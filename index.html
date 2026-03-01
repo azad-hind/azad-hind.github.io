@@ -1701,6 +1701,277 @@ footer::before{
   .page-hero,.formations-wrap{padding-left:24px;padding-right:24px;}
 }
 
+
+/* ═══════════════════════════════════════════════
+   COMPREHENSIVE RESPONSIVE STYLES
+   Mobile-first approach — works on all screen sizes
+   Breakpoints: 1024px (tablet), 768px (phablet), 480px (mobile)
+═══════════════════════════════════════════════ */
+
+/* ── TABLET & SMALL DESKTOP (max 1024px) ── */
+@media (max-width: 1024px) {
+  .sec-inner { padding: 60px 32px; }
+  .hero-inner { padding: 80px 32px 60px; }
+  .hero-stats { display: none; }
+  .dossier-grid { grid-template-columns: 1fr 1fr; }
+  .ops-grid { grid-template-columns: 1fr 1fr; }
+  .women-grid { grid-template-columns: 1fr 1fr; }
+  .intel-cards { grid-template-columns: 1fr; }
+  .belief-grid { grid-template-columns: 1fr; }
+  .naval-layout { grid-template-columns: 1fr; }
+  .enlist-layout { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .f-inner { grid-template-columns: 220px 1fr; }
+  .f-attributes { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── PHABLET (max 768px) ── */
+@media (max-width: 768px) {
+
+  /* HEADER */
+  header { padding: 0 16px; height: 52px; }
+  .h-nav { display: none; }
+  .h-satya { font-size: 12px; letter-spacing: 3px; }
+  .h-satya-full { display: none; }
+  .h-clearance { display: none; }
+  .h-right { display: none; }
+  .h-insig { width: 28px; height: 34px; }
+  .h-time { font-size: 10px; letter-spacing: 1px; }
+
+  /* HERO */
+  .hero { min-height: auto; padding-bottom: 40px; }
+  .hero-inner { padding: 70px 20px 40px; }
+  .hero-inner::before, .hero-inner::after { display: none; }
+  .hero-satya-letters { flex-wrap: wrap; gap: 0; }
+  .sl-char { font-size: clamp(36px, 10vw, 60px); }
+  .sl-word { font-size: 6px; }
+  .hero-dot { font-size: clamp(24px, 6vw, 40px); }
+  .hero-fullname { font-size: 8px; letter-spacing: 2px; }
+  .hb-text { font-size: clamp(14px, 4vw, 18px); }
+  .hb-hi { font-size: clamp(12px, 3.5vw, 15px); }
+  .hero-ina-strip { flex-direction: column; gap: 10px; max-width: 100%; padding: 14px 16px; }
+  .his-label { border-right: none; border-bottom: 1px solid rgba(200,146,26,0.2); padding-right: 0; padding-bottom: 10px; }
+  .hero-stats { display: none; }
+
+  /* SECTION HEADERS */
+  .sec-inner { padding: 50px 20px; }
+  .sh-title { font-size: clamp(22px, 7vw, 36px); }
+  .sec-head { padding-left: 14px; margin-bottom: 36px; }
+
+  /* DOSSIER */
+  .dossier-grid { grid-template-columns: 1fr; }
+  .dos-photo { height: 220px; }
+
+  /* INTEL */
+  .intel-cards { grid-template-columns: 1fr; }
+  .ic-card { padding: 24px 20px; }
+
+  /* MAP */
+  .map-container { margin: 20px 0 0; }
+  .map-info-panel { width: calc(100% - 20px); left: 10px !important; top: 10px !important; font-size: 11px; }
+  .map-legend { gap: 12px; font-size: 9px; }
+
+  /* BELIEF */
+  .belief-grid { grid-template-columns: 1fr; }
+  .belief-manifesto { padding: 28px 24px; }
+  .bm-title { font-size: clamp(18px, 5vw, 26px); }
+
+  /* OPS */
+  .ops-grid { grid-template-columns: 1fr; }
+
+  /* NAVAL */
+  .naval-layout { grid-template-columns: 1fr; }
+  .nl-vintage, .nl-cyber { padding: 28px 24px; }
+  .nc-stats { grid-template-columns: 1fr 1fr 1fr; }
+
+  /* WOMEN */
+  .women-grid { grid-template-columns: 1fr 1fr; }
+
+  /* FORMATIONS */
+  .f-inner { grid-template-columns: 1fr; }
+  .f-left { border-right: none; border-bottom: 1px solid rgba(200,146,26,0.1); padding: 28px 24px; }
+  .f-right { padding: 28px 24px; }
+  .f-name { font-size: clamp(22px, 6vw, 36px); }
+  .f-attributes { grid-template-columns: 1fr 1fr; gap: 4px; }
+  .f-watermark { font-size: 120px; right: -10px; }
+  .page-hero { padding: 50px 20px 40px; }
+  .formations-wrap { padding: 0 20px 60px; }
+
+  /* DECLARATION */
+  .enlist-layout { grid-template-columns: 1fr; }
+
+  /* FOOTER */
+  footer { grid-template-columns: 1fr; padding: 40px 20px 24px; gap: 28px; }
+  footer::before { margin: -40px -20px 24px; }
+
+  /* TICKER */
+  .ticker-inner { font-size: 9px; letter-spacing: 2px; }
+  .ticker-inner span { margin: 0 16px; }
+}
+
+/* ── MOBILE (max 480px) ── */
+@media (max-width: 480px) {
+
+  /* HEADER */
+  header { padding: 0 12px; height: 48px; }
+  .h-satya { font-size: 10px; letter-spacing: 2px; }
+  .h-brand { gap: 8px; }
+  .h-insig { width: 24px; height: 29px; }
+
+  /* HERO */
+  .hero-inner { padding: 60px 16px 36px; }
+  .sl-char { font-size: clamp(28px, 9vw, 48px); }
+  .hero-dots-line { display: none; }
+  .hero-fullname { font-size: 7px; letter-spacing: 1px; }
+  .hb-text { font-size: 14px; line-height: 1.75; }
+  .hb-hi { font-size: 12px; }
+  .hero-ina-strip { padding: 12px 14px; }
+  .his-text { font-size: 10px; }
+
+  /* SECTION */
+  .sec-inner { padding: 40px 16px; }
+  .sh-title { font-size: clamp(20px, 8vw, 32px); letter-spacing: 1px; }
+  .sh-code { font-size: 8px; letter-spacing: 2px; }
+  .sh-sub { font-size: 10px; letter-spacing: 1px; }
+
+  /* DOSSIER */
+  .dos-photo { height: 180px; }
+  .dc-title { font-size: 15px; }
+  .dc-body { font-size: 11px; }
+
+  /* INTEL */
+  .ic-card { padding: 20px 16px; }
+  .ic-title { font-size: 17px; }
+  .ic-body { font-size: 12px; }
+
+  /* MAP */
+  .map-info-panel { padding: 14px; }
+  .mip-name { font-size: 18px; }
+  .mip-body { font-size: 10px; }
+  .map-legend { flex-direction: column; align-items: flex-start; gap: 6px; padding: 10px 14px; }
+
+  /* BELIEF */
+  .belief-manifesto { padding: 22px 18px; }
+  .bp-pillar { padding: 22px 18px; }
+  .bm-body { font-size: 14px; }
+
+  /* OPS */
+  .og-cell { padding: 22px 18px; }
+
+  /* NAVAL */
+  .nl-vintage, .nl-cyber { padding: 22px 18px; }
+  .nc-stats { grid-template-columns: 1fr 1fr 1fr; }
+  .ncsb-num { font-size: 20px; }
+
+  /* WOMEN */
+  .women-grid { grid-template-columns: 1fr; }
+  .wg-card { padding: 22px 18px; }
+
+  /* FORMATIONS */
+  .f-left { padding: 22px 18px; }
+  .f-right { padding: 22px 18px; }
+  .f-attributes { grid-template-columns: 1fr; }
+  .f-tagline { font-size: 16px; }
+  .f-body { font-size: 12px; }
+  .f-watermark { opacity: 0.025; font-size: 90px; }
+  .f-emblem { width: 56px; height: 56px; font-size: 28px; }
+
+  /* PHILOSOPHY */
+  .big-quote { font-size: clamp(16px, 5vw, 24px); }
+  .phil-body-text { font-size: 14px; }
+  .pt-line { font-size: 11px; }
+
+  /* DECLARATION */
+  .eleft-oath { font-size: 13px; }
+
+  /* DISCLAIMER pillars */
+  .disc-pillars { grid-template-columns: 1fr !important; }
+
+  /* FOOTER */
+  footer { padding: 32px 16px 20px; }
+  .fb-satya { font-size: 18px; letter-spacing: 4px; }
+}
+
+/* ── HAMBURGER MENU for mobile ── */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px 10px;
+  background: rgba(200,146,26,0.06);
+  border: 1px solid rgba(200,146,26,0.2);
+  margin-left: 8px;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+.menu-toggle:hover {
+  background: rgba(200,146,26,0.12);
+  border-color: rgba(200,146,26,0.4);
+}
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--amber);
+  transition: all 0.3s;
+  transform-origin: center;
+}
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 52px;
+  left: 0; right: 0;
+  background: rgba(3,6,8,0.98);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 499;
+  padding: 16px 0;
+  flex-direction: column;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(200,146,26,0.5);
+  text-decoration: none;
+  padding: 12px 24px;
+  border-bottom: 1px solid rgba(200,146,26,0.06);
+  transition: all 0.2s;
+}
+.mobile-nav a:hover, .mobile-nav a.active {
+  color: var(--amber);
+  background: rgba(200,146,26,0.05);
+  padding-left: 32px;
+}
+@media (max-width: 768px) {
+  .menu-toggle { display: flex; }
+}
+
+/* ── DECLARATION signature responsive ── */
+@media (max-width: 640px) {
+  .decl-sig-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .decl-sig-grid > div:last-child {
+    text-align: left !important;
+  }
+}
+
+/* ── BOOT LOADER mobile ── */
+@media (max-width: 600px) {
+  .boot-grid {
+    width: 90vw;
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .boot-cyber { display: none; }
+  .boot-vintage { padding: 30px 20px; }
+  .boot-divider { display: none; }
+}
 </style>
 </head>
 <body>
@@ -1748,13 +2019,27 @@ footer::before{
     <li><a href="#women">AGENTS</a></li>
     <li><a href="#formations">FORMATIONS</a></li>
     <li><a href="#disclaimer">DISCLAIMER</a></li>
-    <li><a href="#enlist">ENLIST</a></li>
+    <li><a href="#enlist">DECLARATION</a></li>
   </ul></nav>
   <div class="h-right">
     <div class="h-clearance">CLEARANCE: OMEGA</div>
-    <div class="h-time" id="liveTime">--:--:--</div>
   </div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#dossier" onclick="closeMobileNav()">DOSSIER</a>
+  <a href="#intel" onclick="closeMobileNav()">INTEL</a>
+  <a href="#map" onclick="closeMobileNav()">MAP</a>
+  <a href="#belief" onclick="closeMobileNav()">BELIEF</a>
+  <a href="#ops" onclick="closeMobileNav()">OPS</a>
+  <a href="#naval" onclick="closeMobileNav()">1946</a>
+  <a href="#women" onclick="closeMobileNav()">AGENTS</a>
+  <a href="#formations" onclick="closeMobileNav()">FORMATIONS</a>
+  <a href="#enlist" onclick="closeMobileNav()">DECLARATION</a>
+  <a href="#disclaimer" onclick="closeMobileNav()">DISCLAIMER</a>
+</nav>
 <div class="tribar"><span></span><span></span><span></span></div>
 
 <!-- ══ HERO ══ -->
@@ -2483,86 +2768,163 @@ footer::before{
 </div>
 
 
-<!-- ══ ENLIST ══ -->
-<section class="sec sec-enlist" id="enlist">
-  <div class="sec-inner">
-    <div class="sec-head reveal">
-      <span class="sh-code">> RECRUITMENT TERMINAL · S.A.T.Y.A. CIVILIAN DIVISION</span>
-      <h2 class="sh-title">TAKE THE <span class="a">OATH.</span></h2>
-      <span class="sh-sub">// ENLIST AS A SATYA OPERATIVE — CIVILIAN SOLDIER OF CONSCIENCE</span>
-      <span class="sh-hi">SATYA में भर्ती हो — सत्य का सिपाही बनो</span>
+<!-- ══ DECLARATION ══ -->
+<section class="sec sec-enlist" id="enlist" style="background:linear-gradient(180deg,var(--void) 0%,var(--deep) 100%);border-top:1px solid var(--border);">
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;padding:80px 48px;">
+
+    <div class="sec-head reveal" style="margin-bottom:48px;">
+      <span class="sh-code">> FOUNDING DOCUMENT · S.A.T.Y.A. · 2026 · OMEGA CLEARANCE</span>
+      <h2 class="sh-title">THE <span class="a">DECLARATION</span></h2>
+      <span class="sh-sub">// THAT THE INDIAN NATIONAL ARMY IS REBORN AS S.A.T.Y.A.</span>
+      <span class="sh-hi">घोषणा — कि INA, S.A.T.Y.A. के रूप में पुनर्जन्म लेती है</span>
     </div>
-    <div class="enlist-layout">
-      <div class="el-left reveal-l">
-        <div class="eleft-title">The S.A.T.Y.A. Oath · शपथ</div>
-        <div class="eleft-oath">
+
+    <!-- CENTRAL INSIGNIA -->
+    <div class="reveal" style="text-align:center;margin-bottom:48px;position:relative;">
+      <div style="display:inline-block;position:relative;">
+        <div style="position:absolute;inset:-20px;border:1px solid rgba(200,146,26,0.15);animation:crown-pulse 3s ease-in-out infinite;pointer-events:none;"></div>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAFECAIAAACBObTbAAAdn0lEQVR42u19W5Itq44kicUoeiQ1qhpMj6pHUuOoj229LG4AwvXiKex8nJ25MhYBjuMSQkopWrRo0aJFixZt4/YXQzCy/b//+38+P/mv//6fGJaA+8lA/wfx8ifRvNsTQzCyvWFdgj5atEOonYA1/dtohi3HEEQLuEeLFnCPFi3gHi3aFi08M+5GKuuT4ZF0beF3H4ryEs34J6MF3HflcrwF7gPuewD9h1RkGdAfDtAH3DcA+keUt2JmSuEeoA+4b4D1DyJprNOITxFSFnDfC+hVNH/+v5QxAfqA+7pYJ/wtbyi3AiERxCNfGq3b4phpENbBZxJ/0qX8aMHujlhHmFtmqoI7QHB8sPvqWP/9qqXpU8OxQ/w2WsDdsf3QqeF12nvTQnzEGgTch1I7wcolEAkQtxZG9VHELhEEH3Cfj3WWS74rmQLxAffVsV6VMS1och/Ldf5EC7jzzNOWREGwTqjtrtanLdcwWwPuXq4Y2jbtYg5kelDVgJE20QLuQlcMmCJGnFSDcLyAiI8WcDeT7DLrswvH1p8ggQNhtgbcB0l2llCp/mH3Y4hpGyI+4D5HsguoHTRhQ8QH3JfAuqF5wP1kID7gLpcrdOJSUOXroSZ7oFg+3dP+AuW0XSiTMdxlY/UV9ItotpRg90OwnmpJSa1kzJgP035JIuXqbUyfA+tcDwytOqwwJNYhXE/8VYgPU5XC+iJ1B1pfCgaQBeKvg7tgRsE4dStxAv4JGDcfLdidAXGWzadfGIR0oeOEW8e6Af2AOw/rXNZ3Kj4DAr38q0B8wL0JjhKsSmoXoJ9F5AnIxPT7QID+Lrhrws0HUHure9wFQLwIMgIB91tI/Z+GodFc0iftM0GgxsIx3o03r78vdF9O8/kqcJdAT0AALQK+5ObOA5OHdbM7vf9Zvf53Q7s6rRISKU5nfiS4Fo8jQD4v6Aat1u5sf9eiPGFHofTN6NYD8aiV1LvJ0c0ayUK8TGIF3O8CukZ+iG1c2w4E6G+BO2vr74JAfI0Itxa6PenKEvyZV+H+706ggyz4OXKSRSIgLhQrE7yVORVcP8eD/u8qoONu7Pef66sJIFk6NM/8dJWVruwqpv+7AejcWRSjUHP8hLj8PXquH66A+9JAB/WD1SV/EPGyc1lNJ2lePxL0f4dh3QToGvyJH2XydYKH0GLvMFf9cx7QE1y3MdpnrMrbIbL7IsHuQ9WLCdBtA3q7T5vF7iDTn6Ft/nbHugfQPeCepLGW4/vcBf2+iH+OAXpaIE9i1WupND3HvwshZnbXNvkMrH9CeSd2T3Ycu6B18R7JajzzjubQ375Y9858qw8TEHxA5s/xXjlIIcFgd3uyae2nHkzze6bhjuEXE//urbdLoHp3JNjdUcCMl+lcrtU7YYZ56++h+bwX1t+lTAfLx2U5bMogVGk+4O4lYD576L/PLEIwYHTupu68TynjTyzd4qDPKw9rKWCqt9qWxc2piG/x+voem7w+1gkB8/7hUgC6IWahyuuLIz6vj/XUOFEqVc2CiD+Y4FvCZmXE512wXp56JIdrpqstiU2FzbKIz6sN3Ju2S7HePT1daoi90bzOOikvf63prsmrYb36/yCpDwCZ+WN3J/jqNNFXHwPuZlhfDUN4T7ZD/G+n3Qjx+Tysr6YdlUkyFif1vTg+74J18AiDSGsaNqstqXf9BwsiPu+CdZmODDT7KfUyhG59xOfpILDF+uLn2Pu64cucyXT/WyifOzt5LtbL+jBKrC8uVzbdBKqkLkD89GnKB2D9YIE+fQS6pL4X4vNcwrDF+nRe1M/iUgQPkjo4JitUR8tTMGGO9V32gV3c8FxSp1VltTralCnLE7FeJQAxdo/xfqwgYPSkTsvXWYh/pmC9Cm69qvuF2aycjADpZLe264CeI8nvwbpRxOwMftNppuoxuRyQl61u7qttRCCpd0UO4rqZNQJ5CsT9wL0Ckv7B5fff+pIGV+r6gS0RP/JN8yysa6ZkPOK5327SSfzMQfOyOKl3y9KzVukUxOcxWO/+kJj+90Cz5lWP+PLG94Lx9K2uepC6STabiRcVBrE7ImOqiJe5w2zHTq9MaG6b0jcuqYOCXixpxuDwbwADsSR794pqGhhZYJg/esBaZWVrkpG6oFwmiwS9cf8Mw7oYKKXfClR74/2SyoyNn9sSHjsVvluODC99z5Qr4sf53UHcg7UdTUBsMqOGKaqrbmwry0FD6vTbiffA8Xw0NEckl+dMMv/TJdi7iyoB1fD0lShB6IthJ7sOlmpZfQzhbjVWo+EOGjHDKmHQHybyeoJ/CCKSi0vwgl+rG92FLStR5iTcWT20WhJ/fkD3FoLckqVdpIL401TBtv083j29+euNdU31zxFw96sw6kfwXe2BUKNYrCvrdhDf61p1EBk62VeMj/T+GwP0RRAP5lxH6riDCgecIfCv6HLvAq8O65hpEaxrQC9kd0S2upaY83garYllckIDd66U4lZO1vuUlPTMogZW9KW7mCEKOZgLPiergFtxmyVOrODe7Qm385qyP8rTJXwrM8G6F9wRLA4uwS4GuuzknOuaFHtpurhHKgPLuMMJ6yxcDfXM0D3r3sZdAfF4gVw9Irmmqozdqx/GdQv32NVkN2jdcrLFelKGiHUNKbpUlWF4kOBRZfATPdP4w1n3Hgw1GKHjPwFe3RsY3fcVzBqIdSdeN4A7iPgVrqC3hrhahdg2tJ34E/0TaDdUq8ZyV1mB82W1Vt/Jzf2wnpxOVasBbq2jisGSBjHRNJIGfA44mJpoBeK8Sel/TKLLHCY4WQLu1c5VTSU/xAuqkCoP8/X7u57UBSsTj6a2MrpYWE+1ExKrsXWMiPztp++7SEQQnCYyTh9J76GbDYWiSYc/BVFaxQxtEda6oUZg3Q+Tf34M1Arer3K86/lcKyaM8Ewj9p/MDyOmc/AUrPs6n/FneQCTRa59FjBsF4BxAPB4xLN25GpybVB2l3+il+lWgl7zLi1nsYmSWQrrySPeHUR8a1ZsT/VwrAs4Ppne7RA7GQWv0EW8lZHagntrn3HFevK4ms3yXrlKt25peYHf8O3a+9xu9kgtX30ycV2a+3ZECVuxjYRjnZ53jw3T5TZTl+BTL+pQf++J5irEoeEaVWtIKHgUJ006+FmbLMSgNZ5jZIwXuxPzMWwdi4s4V2NmPocg0wuEfPj+5+kCD0Rbbz04b+F4rCe/PDPiAzmupEEiF7j2QNVVl9arhEOAnptiCVE1ttSuAc9acCdi8QTqgvV1INZbPyROH5dN11ryerf6Vzetla0dxZIxrpvMn/dMDPbSCHj9k97E9hxqlqyvOqO4xCzbJ3FvzEgZ4ytmBDFG5qGRuF4/A+upHSCAn1ibc7xAxvgN+98AuNOnDIm8jCPwebUysCGXCfcFunKvQ45dBXgVy5hDTFWnbNTlk0H/z5FYTxyfemnUfsbQJOsvi8U3M1URcHdtVu/EHp/oqC2qEOv32AFp8kE7eLCMcYc7vSGyLCfkW8Tl5ImowCMRj4OYm5a6tUuAtuyAiMjsNL4JuyGWdE5JZXrhaqXLgxFfXgPlzqbmwsp7shBseMxINhzTnxKo3owUHKbSQ6xxk92D9dIBIDh8RdgX3ECQ06sPkAxnx5Ldf4FTyDganiwQhVq7WD9MrIPGa/c2KsJWYvutHPBqyJOg/M44uJe6rSz9w6WTBHgPW0ulFSr4vmB1CdC7Ur4bVgmKePG+0YKNuaPmMR/KTy9/Y1R1hH/u9bUi0at2LVIZoTpk12L9Y50LDqFS47YA7ncm5lFWnXgCu1clQXXHFK/76q+4LrabeZ1g665ATcCxhnKKCW1pKDjzsJEFGZrYSVsy5lOJkjCGAuu4PilHtfUnoJ5s/WSkI3hoXdVqqS3lnsV1zEdrCUWuW11phn3AsFNd1TJtGF7XBRFzXJ4miCeoHXG/dLV417nMqkpSwqOaVGxFdm/dMNCcocruaijvedzpqJFdrNEkWK1ew02LHzMhDI1fbxEnc7PC+tvva+793Rrx+GcQUmuFSzkRU9YPVqtzrGISrGotrG1asCcQkYNH4l588Vxce5DGOgtmg+COfD2NeCIiF6f2lrEvc8VUc2lU814chvtSlBNbrsa0pSu2IojSgP4RDw3+4c95E+gnESee1st0cLMaWe55MPQ1xayRv1KGkIjjGgzyu3dlrjJzSzXQhWuqGn6+vP9/qojHd4PET2jT3cwRaA2FO+FBb7llkB7TJcFAyHq7YjR5XXYR8ZoYJ9lEd7XihOoduAWNuF9ACwkJg/a7bMYyTg5AfOIUqxJfbKD9dR4UI2R33IrXxEUm/rWP8VVxjhQ2srgXTTrb7uiZJK2wLxIPRofS/0yNCn4ItTvVtuVCRHOsuAjckcGszk5L23QnXYkxF88M7Zcgwm5Bm512YCFZOqag59NzbhnANdFfjRYmDFb8LfSF7YfCHUEwUkSbdnvRkf4DMoJrdjxxCfnpLs7WpHCno7VtympuTvbMsPS0mPDwVD6rBcaUZ1XE+WKZ13cRLw03IZw4JcSAl8q2fCZDfPfy2FWxuzseXckSPnOxrh+Zx/WFP/tXtzIEvXUS18b01L7UzqA81/ToRstz0rVYuCvBtZhhdl3c3ToT+IJ2qrAeTb/zlHMkSxScrK/+eMGdUKVgHBihZz6ugDLwxoraQ9UgCv6T0wEZQ1CdEu5Iq6FwyURAGOy0pMGdlWeL5sVtFUGEafc53jUMLdm9uxw96jGZUPvZCSKnuGgEa6AUvYte7xBwACuliSvv3pM0bxjfCyZ35B5rFgAs2K30pdbF68H7TqTJrrUdmmVljcEgcJOQJBdHZMv/SGQU40odQZAqPrjRaMuqa2KBx+30dHgYMI/h0ieqPrAi7LgH0dwDvJWxvqyR2iog161QINA23JLIQ7V7eb+TEAyyYODPQuJSe3nXZHFeX7Z7+olIvejX971V80p17p4ZsUS2Cv7cC+h7aRuTtaqHyiqemWqJL5zglVdpVi54vYuRKhhzFrWX/1zaMwPiEly4SMAwOLJ7Af08UkeWLh5EaWXSPGNY4R3wxIobE9gr4U1f1saoehpG7ml55LgIAoDAmCTCOI42WM+wpniwfst70QZSJXh39bJ+cH9rFuZenlwL7i2C1w/NMaR+9o7Uiosc+dZ52ensmkSlERwCZgU9Iz5dOlPMyDKhptoZRyj11fSM7YxvD3dzXAaph3jD2+O06Lv7ncAdeZXSXRym3PnCw79cQ5t82Z1OCAxuedWAoSOxvt1Fk1adGZYN1n3CTHYnlmkrnXE1yJF1zd6jKtWyanijDsvuN7HKHHzqSyuDhB8x0BGWrdYyiAZO9j0anVux7PNDHPSPclEiee+R6h1VOXhJMdSTsK6JCtHUZhxkqoLrssrxCOWz6pmFm2IWrMW5CWR1WAfBnUgYUn0N7oUm2lYLObQRnROJxxCyx2uSslZCVtIPXgGQFQl8jD2HD+yOrybrsyAWEqlnagx3pJAI13AGN8TjFfy+iO9OkCx4GydTL3bXD8Tuk7osX+77pofEzChz3124JM6raiae9C3vqhLY1RwbHWywbuecYbEVciK5NLsLcjuJZ/QSt8yOem/Y1OijDDL3+/CfC/RMuBoPs3DA+e16LLgBOS7sjkQIhcGqQfxGF/mcjNRWjOAc7d4tL2M4ZHdWaDrjrQXnTckhGDib99u73kggfgpY3//Zzq/4gYJvzIazgkuxt57hVtO8jeOnC5uqY03Qn+6kDyjmkU3e31a0hKohaH7Wu3dLw44UOWIMZKdecs0LkysCN9D8YNBXyZiLe79EcRPEjGz9if0zK1DdbaB3XTxW2sEX7qxu2Vpdu8+6+es7jYD4sVYV4qt7iOZls2bQu/0TKzPuEZXrrK8Petdlb0KuAuvO49rD49HpYTfxSkXkWmJ8cSs2mUZZDYtYlN2BlpF9dlrlhHpplTPQbJ208XQD91fJ3twXrnlUq1INrm30sHyshqMqSJD71wOoojXix5O9ku+nUDtY1UzWt2z15kQGJXM/lJ75LlH2Vb4H3XxKrMs80bJcS3hXH7z3ZemF6n7UWp3cHATmfPPu8z15b6rrnCBLFta9t2vQEvPKM1ON5ywP+Yn8j9V/isEnKP52c6YnYovz3vHAOmQCAcPq+cPtdEtsfdwjsoynVsdpEY4m2Cc97s7hEyGLhXRMmkdvdqWbpVp3ynYH1IxCXCXxGBAZvgmsWwFd65lpuUtbiLf9loDyqc0P60kZRNC1JPA03vjaCCivCU2BahJgXXl+kvUvrPSJBnwvWRWsiw1O2d+9qmZfkjUlmoedYBsWZg/36uIjEB+MHq0FaKI09EJwryI7YB1Nw/rm0iD7LVPZD6NdaN0Og0f2fiVWLuwB9RuiDWZrVlZr71nOwxaxYS7IQPy+ZmhLsYyJ4cuz3t8w4C5atPlwd0qUFy7OTUmdAMmw8Gz3MsKyD9DqPxC/oz2aPDNqLCRmcIIvrdVuiG8gfmWU03bq+MtledZC12+F5oi/MJ2Bq4bhzumAkc8Th4Y7HK6qJlC+BQY2gLvrxRmTpKHH1yheX/lsUKxmBetHT/PB6/dsjKPh7hfsJkij9/ukeWLbaMiqGD/m+SQCwN237yURQB9jua6wP+RFFnqqRc4Ibp5X04W+7xO2av0cn3FpvLwkhnSW/nkO5hg6d2Qge/wymD7mz8hR+Pe27+vbRFYC/c3uUtsExBeUPSOZ/tmaLbw1ZbQF9fd+2j0x68R7gzW435tNWNN9INyjRTsc7khxksVtnWjgdNAb5qwIv7zdOEY7QNvcKGYQxXxbXvatLVRkKudOYmj3aKHdh5CB+MNB80uRuvn8ns/ugeB71sZEZT8N7qx3jsWwKdmHqQotg/HDF74gc/QvOKTP9HEhXLNEUado4ylZM1MruGXmsPuawYm3rSXZtS/Dq+tTBny/AOCg+YkSbvdLvXn9sY6TpmW1tQD9cxdJXm0OLtcYWwuh9WcwHzbi0cZvyJGJwMBynZKHJJSM3/NXmMGFrmavpvOi+dljs6Cf9xqmaKtRO7csR2j3WBLpklmYPoN5i7HzzqO5yJnfRvb93MymQ+Hul2Iu7NGNNklkspwmVIzAR7+gTZJN07cePydNoWpWUO0sZHtkTxEg8GF9U9VpKFMCAtSWrsnA/XRFNCblMl2BHY8ryVys/3t6mW7XFnmsSqvRplP7b9Y8PD9l/v43CFnfmPGF9WHxz1f+g+a+ZvvB1urcl9JD4pOXvJXFFvmih8vrP2SXa7q6zqoMLQ5kj3BIMdY92IQ7d/QyoAvREcWHP/gUwv1DeD/+riL+98nP+F7i47sK6yZeyBLKLYHeoksCn0J2/zz3g/hPVz7dJWpEyowV78tN1ZUcWPcW+onM90+/VBWfEnYvJdEbDaWoUi73X0db4id8kRrinOKfodGcpNfzCe3+w2frGx+W3fbh9arJ7MqjIYqWInWxFxLvG1FqJcHXZ/vs3upW1ViuChh9MYLuzUhzmt9az4wndSWU8W8Bgd6dvgeRMaCHiN7CxKMQ3hgWOGYtVPE0gQmfwV3r7fsvn/xoNqlq/d6WL4l+K6KL0RYHOuLDITyMxCsgL4gYe024EwdjreVFOGSqB0+tQg74GnNdErvomemOF2QiNL6X7jL+uCCrM/h52gPSA4IwUM90r3WBHszYCqZgHTktYnUVXwkEHkB6erjWRum0aZmz5ZNbL4bsAIgoijZ+e+GaahqnJG4Ktwj+r4rj7lmueEWK39zEd+vnL5uFtsE9NJmyJD2ZoU3Y1C4t+vvMX1e1I19jhT/8md6Z9xaH++DuIaPtBG7EOUP//E3wfx/Oxi1UeiCsfMDINuLkoFgZ8WP6Rg+sId99Xqf1vVyCT/95Wv8f2t0vBZQG+tXl13L+VGPUohmi3ETEEkYa7WpsOSdop8X7sY8Ydhoca6TIZ/SJQ+YoDmxCTHrdqN/qq7HBuBu+6ZmRUTsRawA+ViZIurwuiOepWvf3AB0UCWIzjOYgIoiXngjQKfm8P/GeXZMVafiEBLhHS17/xPME0yNAHxN7Iw6bxVm4NFUfXAMZcj8iCumfIHW3W5GbLOF0MMFrgM71w+C3fLppKVqfJKqG/FouH8S9AmgChd81RPDCKz1w5T3a1IhYvpbRCS5oTcGPRLg5NqpY6s6g2K4rbzk1tXt5h0NJ7SYrQUz5XcQji/nsK06IbaO/fcZSENXbPC2Tj1iZ5a8ybkawqN2pAvBnB8CDbVoov4rmy5tvZfy2655M22N0NA7Xe1FFSG71hnZk6tfD+NZKE9LdnQ+4Xf5BNg10ekA0UlNpG4AHnQSGM7FBdCdYCeVfJTfETjWXRvfQfPU6cxKV4sAFd3WixfYY7k2mL05kLqU5JcIkoG9uPwhoflOCx0ldxugy9IPT19LlRJxLV41neokkXWiEgP6HZVIuaf5Ib2Np54BAN0e/LWG1XpAGbe5uCoaeuzLWpQsyvdp57xulnVSOzjEEX74UPdqtyzeyySXsWtpybWVYIa4KfTwQxBzlLlCqLKjPMkD4W1i4px201XWCOwcOoPbWq4nXbXdIuwqke+zIcsK8d60uL2fk9VgHNAP4D/wKwxk9xkXzmUT90bjsEhNuJRMbb2mZdN8i49Nfjbvy8Nt0L3cjX1EVTvQgDrCSxysZ8O2sriMhTC9eXUTkHzgjD2v4qhEpA/ZijW3UDavgdmk61v2yF1m9Y/cQmnXFng7SZHU1c1/jE1+AW7GCHBtiiHOfz5Lvu0gaP5tEvxiQjrUKZyRFzZhHzy7Vfli9s+GUm0/hLoE0mn6+/5ag4WrOFRPjuCr6xevtUa7RVo5IZXJXfJEoT2RlA7dpipvW5YlqaB1ypt5Kmgs+ihCryHXVoXBvIbWVGxUP/uTK+sE5OT5ur7gyIttVWNklrMjlMXy3lmHBgr5VaNoWUmGinWr7grTmQTIxdg3TteBexT0X+iA3C+5NGmaD2lTSEL2tUpVYz7C8K2NQ7gj3ls5GoJ/s4jHK7/I4YtwofyoYuEtc7xefSQmSBe0HdzH0bamdGFCrUs7DEK9XMt16XfT9II0QnwXxCXBnQZ+leTRm7tYi3nY0qleeiQt4MpUy3QB75o41HS+gLICDVB60lcWuiHcyUquj9EZ8Ij3FyvSRd8GdGBSW3G8dSncnA3ForoN4Zd/od8Rdut1RXdaCf9KqDZf7hjczNGB1RbyM2gVZWVrHovtCfA+4I9BvHeXq66icx/Hgkv73CgTQx3gMr4Y7Af33z1shRCz0K2neA/GaWqRJGjDHzesfcB8H/WroTiurxMfHb35SvRrHdzUMQeeHZWr4S2c1IjlWeSEArM+T7OpP+FE7Unqg+uI0nR+Wj+Q0uCOgb806vnFzg5z1R2OyAnet6FmkRsuRiXfOhDvI9J/QJWW4Eh3+oEn53XUg0sugasYg22DA/RDQt+a+CxqNCdj6do0W5/a2+u33ZMw8H+7EjJZOt64mRvSMVSiOba9SLdLrttSwt8C9uq0LnCfeeTNdv65qnV+VA/kuuKd2pVk/RPr1X+/kua2sw5OikfDVFy/RpEWIFnDXohmR7FWwis9ZR65PmYgPuN8iaWTAms7BSCL2Mvzz8lqzt4uZ7rUpzVVxc6tAfEk32u1wB5Oa6w07Yk/Qhyogj4018Gs5gM5ClTLft2G6OWKRIEv0zlKbN8Ldqu6IHv2aDtMnRGOq4YaYub0teMcHzPMY7H4vzXProgkEiaxe5+X1vgPu7tToB/2Ji/nO2XyuBbEABFY3NqIFu6/Fi+aAbl2r1eiZUDgBd2PQl74Xp3pDsh3JVuSEmDnWPOXO+mApbFXbh36j27aFYPdB1uEA2yNawN3MTp2+PLgWBRJDFnCPthb9gwe3RCql8CPdDvduOPiyjvYymYKg5xEidrueaeXw9ztmckqbCr7Xnbi/yzNTDRX8+GroAHc9PgwRpi9td1u7C+7VjEIf3K9/c5lbW9OpRmnAfTMlgyTOXp8aweJtNycg+LW/dH0Dc5kjipmI/kVOqVq5nzQKPlAecIdo0uRmHWIUGmZODZQH3I0p38+1IgZ3QDzg7qWMuRVGzWEt7lu0gLuBXTgGZBO/OuAeDaJz24x5Ae6A+5bLQCljokWLFi1atGj/v/0v8hhmoYQ+AiAAAAAASUVORK5CYII=" style="width:130px;height:156px;object-fit:contain;filter:brightness(1.05);display:block;" alt="INA Insignia">
+      </div>
+      <div style="margin-top:20px;font-family:'Orbitron',monospace;font-size:10px;letter-spacing:6px;color:rgba(200,146,26,0.45);">1942 · SINGAPORE → 2026 · BHARAT</div>
+    </div>
+
+    <!-- FOUNDING DECLARATION TEXT -->
+    <div class="reveal" style="border:1px solid rgba(200,146,26,0.25);background:rgba(200,146,26,0.03);padding:52px 56px;position:relative;overflow:hidden;margin-bottom:3px;">
+
+      <!-- Watermark -->
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-15deg);font-family:'Orbitron',monospace;font-size:clamp(30px,6vw,80px);font-weight:900;color:rgba(200,146,26,0.035);white-space:nowrap;pointer-events:none;letter-spacing:4px;">INA · SATYA · 2026</div>
+
+      <!-- Corner marks -->
+      <div style="position:absolute;top:16px;left:16px;width:24px;height:24px;border-top:2px solid var(--amber);border-left:2px solid var(--amber);"></div>
+      <div style="position:absolute;top:16px;right:16px;width:24px;height:24px;border-top:2px solid var(--amber);border-right:2px solid var(--amber);"></div>
+      <div style="position:absolute;bottom:16px;left:16px;width:24px;height:24px;border-bottom:2px solid rgba(0,232,122,0.4);border-left:2px solid rgba(0,232,122,0.4);"></div>
+      <div style="position:absolute;bottom:16px;right:16px;width:24px;height:24px;border-bottom:2px solid rgba(0,232,122,0.4);border-right:2px solid rgba(0,232,122,0.4);"></div>
+
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:4px;color:rgba(200,146,26,0.4);margin-bottom:28px;position:relative;">
+        > DOCUMENT REF: SATYA-FOUNDING-001 · DATE: 2026 · STATUS: PERMANENT RECORD
+      </div>
+
+      <!-- Main declaration English -->
+      <div style="font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,26px);font-weight:900;color:var(--amber);text-shadow:0 0 20px rgba(200,146,26,0.2);line-height:1.4;margin-bottom:24px;position:relative;">
+        "We, the inheritors of the Indian National Army's unfinished work, hereby declare the founding of <span style="color:var(--paper);">S.A.T.Y.A.</span>"
+      </div>
+
+      <div style="font-family:'Playfair Display',serif;font-size:clamp(14px,1.8vw,18px);font-style:italic;color:rgba(232,213,168,0.8);line-height:2;margin-bottom:28px;position:relative;">
+        The Indian National Army was founded in Singapore on 1 September 1942 under the command of Netaji Subhas Chandra Bose. Forty thousand soldiers — Tamil, Bengali, Punjabi, Sikh, Hindu, Muslim, men and women — gave up safety, salary, and survival for a single idea: that India deserved to be free.<br><br>
+        They carried three words as their creed: <strong style="color:var(--amber);font-style:normal;">Ittefaq. Etmad. Kurbani.</strong> Unity. Trust. Sacrifice.<br><br>
+        The INA did not win its war on the battlefield. But it won something larger — it broke the spine of an empire from the inside. When the naval mutiny of 1946 raised the INA flag on 78 ships, when British officers wrote to London that Indian loyalty could no longer be guaranteed, the INA had already won. India was free within eighteen months.<br><br>
+        That work is <strong style="color:var(--amber);font-style:normal;">unfinished.</strong>
+      </div>
+
+      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(200,146,26,0.3),transparent);margin:28px 0;"></div>
+
+      <!-- Hindi -->
+      <div style="font-family:'Noto Serif Devanagari',serif;font-size:clamp(14px,1.6vw,18px);color:rgba(232,213,168,0.65);line-height:2;margin-bottom:28px;position:relative;">
+        भारतीय राष्ट्रीय सेना की अधूरी विरासत के उत्तराधिकारी होने के नाते, हम <strong style="color:var(--amber);">S.A.T.Y.A.</strong> की स्थापना की घोषणा करते हैं।<br><br>
+        INA के सैनिकों ने जो तीन शब्द थामे थे — <strong style="color:var(--amber);">इत्तेफाक़, इतमाद, क़ुर्बानी</strong> — वो आज भी हमारी नींव हैं।<br>
+        उनका काम अधूरा है। हम उसे आगे ले जाते हैं।
+      </div>
+
+      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(200,146,26,0.2),transparent);margin:28px 0;"></div>
+
+      <!-- The formal declaration -->
+      <div style="font-family:'Orbitron',monospace;font-size:11px;letter-spacing:3px;color:rgba(200,146,26,0.5);margin-bottom:18px;">
+        > THEREFORE, S.A.T.Y.A. HEREBY DECLARES:
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:32px;position:relative;">
+        <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 18px;background:rgba(200,146,26,0.04);border:1px solid rgba(200,146,26,0.1);">
+          <span style="font-family:'Orbitron',monospace;color:var(--amber);font-size:12px;flex-shrink:0;margin-top:1px;">I.</span>
+          <span style="font-size:13px;line-height:1.9;color:rgba(232,213,168,0.75);">That <strong style="color:var(--paper);">S.A.T.Y.A. — Strategic Analysis & Tactical Yield Agency</strong> is the direct spiritual successor to the Indian National Army, founded 2026, carrying forward the INA founding belief of Ittefaq, Etmad, and Kurbani into the 21st century.</span>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 18px;background:rgba(200,146,26,0.04);border:1px solid rgba(200,146,26,0.1);">
+          <span style="font-family:'Orbitron',monospace;color:var(--amber);font-size:12px;flex-shrink:0;margin-top:1px;">II.</span>
+          <span style="font-size:13px;line-height:1.9;color:rgba(232,213,168,0.75);">That S.A.T.Y.A. is a <strong style="color:var(--paper);">peaceful, non-violent, civic movement</strong>. We honour the INA's sacrifice — we do not replicate its wars. Our battlefield is conscience. Our weapons are truth and evidence.</span>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 18px;background:rgba(200,146,26,0.04);border:1px solid rgba(200,146,26,0.1);">
+          <span style="font-family:'Orbitron',monospace;color:var(--amber);font-size:12px;flex-shrink:0;margin-top:1px;">III.</span>
+          <span style="font-size:13px;line-height:1.9;color:rgba(232,213,168,0.75);">That S.A.T.Y.A. carries the INA's founding oath into every act of daily life: <strong style="color:var(--paper);">to not corrupt, to not be corrupted, to speak truth, to serve without expectation, to see every Indian as equal.</strong></span>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 18px;background:rgba(200,146,26,0.04);border:1px solid rgba(200,146,26,0.1);">
+          <span style="font-family:'Orbitron',monospace;color:var(--amber);font-size:12px;flex-shrink:0;margin-top:1px;">IV.</span>
+          <span style="font-size:13px;line-height:1.9;color:rgba(232,213,168,0.75);">That the <strong style="color:var(--paper);">Azad Hind that INA fought for</strong> — a free India where truth is not punished, where merit rises above birth, where every citizen is equally protected — <strong style="color:var(--paper);">is still unbuilt.</strong> S.A.T.Y.A. exists to build it.</span>
+        </div>
+      </div>
+
+      <!-- The Oath - full width -->
+      <div style="border:1px solid rgba(200,146,26,0.25);padding:32px 36px;background:rgba(200,146,26,0.05);position:relative;margin-bottom:28px;">
+        <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:4px;color:rgba(200,146,26,0.4);margin-bottom:16px;">> THE SATYA OATH · शपथ — FOUNDED IN INA TRADITION</div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(15px,1.8vw,19px);font-style:italic;color:var(--paper);line-height:2;margin-bottom:16px;">
           "I, a citizen of India, before the memory of those who gave everything and asked nothing —<br><br>
-          <strong>I will not give or take a bribe. Ever.</strong><br>
+          <strong style="font-style:normal;color:var(--amber);">I will not give or take a bribe. Ever.</strong><br>
           I will see every Indian — Hindu, Muslim, Sikh, Christian, Dalit, Adivasi — as my own.<br>
-          <strong>I will speak truth even when silence is profitable.</strong><br>
+          <strong style="font-style:normal;color:var(--amber);">I will speak truth even when silence is profitable.</strong><br>
           I will never choose violence as a solution.<br>
-          <strong>I will follow the three pillars of the INA:</strong><br>
-          Ittefaq. Etmad. Kurbani.<br><br>
+          <strong style="font-style:normal;color:var(--amber);">I will follow the three pillars of the INA: Ittefaq. Etmad. Kurbani.</strong><br><br>
           I am not a soldier with a rifle.<br>
-          I am an operative of SATYA — with a conscience.<br>
-          That is rarer. That is what India needs."
+          I am an operative of S.A.T.Y.A. — with a conscience.<br>
+          <em>That is rarer. That is what India needs.</em>"
         </div>
-        <div class="eleft-oath hi">
+        <div style="font-family:'Noto Serif Devanagari',serif;font-size:clamp(13px,1.5vw,16px);color:rgba(232,213,168,0.55);line-height:2;">
           "मैं एक भारतीय नागरिक — INA की क़ुर्बानी के नाम पर शपथ लेता/लेती हूँ:<br>
-          <strong>न भ्रष्टाचार करूँगा/करूँगी, न सहूँगा/सहूँगी।</strong><br>
+          <strong style="color:var(--amber);">न भ्रष्टाचार करूँगा/करूँगी, न सहूँगा/सहूँगी।</strong><br>
           हर भारतीय को अपना मानूँगा/मानूँगी।<br>
-          <strong>सत्य बोलूँगा/बोलूँगी — चाहे जो भी कीमत हो।</strong><br>
-          इत्तेफाक़। इतमाद। क़ुर्बानी।"
-        </div>
-        <div class="eleft-sig">— S.A.T.Y.A. · सत्य · FOLLOWING THE INA BELIEF SINCE 1942</div>
-      </div>
-      <div class="el-right reveal-r">
-        <div class="ef-title">> ENLISTMENT_TERMINAL</div>
-        <div class="ef-sub">// COMPLETE ALL FIELDS · DATA IS PRIVATE</div>
-        <div id="enrollForm">
-          <div class="ef-row half">
-            <div><label class="ef-label">Name / नाम</label><input type="text" id="e-name" placeholder="> Your name_"></div>
-            <div><label class="ef-label">Age / आयु</label><input type="number" id="e-age" placeholder="> Age_" min="14"></div>
-          </div>
-          <div class="ef-row half">
-            <div>
-              <label class="ef-label">State / राज्य</label>
-              <select id="e-state">
-                <option value="">> State_</option>
-                <option>Andhra Pradesh</option><option>Assam</option><option>Bihar</option><option>Delhi</option><option>Gujarat</option><option>Haryana</option><option>HP</option><option>J&K</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option><option>MP</option><option>Maharashtra</option><option>Manipur</option><option>Nagaland</option><option>Odisha</option><option>Punjab</option><option>Rajasthan</option><option>Tamil Nadu</option><option>Telangana</option><option>UP</option><option>Uttarakhand</option><option>West Bengal</option><option>Northeast</option><option>Overseas</option>
-              </select>
-            </div>
-            <div>
-              <label class="ef-label">Field / क्षेत्र</label>
-              <select id="e-field">
-                <option value="">> Field_</option>
-                <option>Technology</option><option>Journalism</option><option>Law</option><option>Education</option><option>Agriculture</option><option>Healthcare</option><option>Politics/Civic</option><option>Arts/Culture</option><option>Environment</option><option>Student</option><option>Other</option>
-              </select>
-            </div>
-          </div>
-          <div class="ef-row">
-            <label class="ef-label">Why do you take this oath?</label>
-            <textarea id="e-why" placeholder="> State your reason_"></textarea>
-          </div>
-          <div class="ef-row">
-            <label class="ef-label">Contact / संपर्क</label>
-            <input type="text" id="e-contact" placeholder="> Email or phone_">
-          </div>
-          <button class="submit-btn" onclick="doEnlist()">[ TAKE THE OATH · ENLIST IN S.A.T.Y.A. ] _</button>
-        </div>
-        <div class="success-panel" id="successPanel">
-          <div style="font-size:44px;margin-bottom:16px">🇮🇳</div>
-          <div class="sp-title">JAI HIND_</div>
-          <div class="sp-body">
-            > Enlistment confirmed · S.A.T.Y.A. OPERATIVE STATUS: ACTIVE<br>
-            > Welcome. You carry the unfinished work of 40,000.<br>
-            > They asked for nothing. They gave everything.<br>
-            > Ittefaq. Etmad. Kurbani.<br>
-            > सत्य मेव जयते · JAI HIND · JAI BHARAT_
-          </div>
+          <strong style="color:var(--amber);">सत्य बोलूँगा/बोलूँगी — चाहे जो भी कीमत हो।</strong><br>
+          <strong style="color:var(--amber);">इत्तेफाक़। इतमाद। क़ुर्बानी।</strong>"
         </div>
       </div>
+
+      <!-- Seal & Signature -->
+      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(200,146,26,0.25),transparent);margin:28px 0;"></div>
+
+      <div class="decl-sig-grid" style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;flex-wrap:wrap;">
+
+        <!-- Left: Agency seal text -->
+        <div>
+          <div style="font-size:10px;letter-spacing:3px;color:rgba(200,146,26,0.35);margin-bottom:20px;">
+            > SIGNED & SEALED IN THE NAME OF THE INA · 2026
+          </div>
+
+          <!-- Signature block -->
+          <div style="border:1px solid rgba(200,146,26,0.2);background:rgba(200,146,26,0.03);padding:28px 32px;display:inline-block;position:relative;min-width:340px;">
+            <div style="position:absolute;top:8px;left:8px;width:14px;height:14px;border-top:1px solid var(--amber);border-left:1px solid var(--amber);"></div>
+            <div style="position:absolute;bottom:8px;right:8px;width:14px;height:14px;border-bottom:1px solid rgba(0,232,122,0.4);border-right:1px solid rgba(0,232,122,0.4);"></div>
+
+            <!-- The signature itself - stylised cursive rendered in SVG -->
+            <svg viewBox="0 0 320 80" style="width:280px;display:block;margin-bottom:12px;" fill="none">
+              <!-- Adhritya signature - flowing cursive strokes -->
+              <path d="M10 55 C20 20, 35 15, 45 38 C50 50, 48 60, 42 62 C36 64, 30 55, 35 45 C40 35, 55 30, 65 42" stroke="#C8921A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.9"/>
+              <path d="M62 42 C70 30, 80 28, 85 40 C88 48, 84 58, 78 58 C72 58, 70 50, 74 44" stroke="#C8921A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.9"/>
+              <path d="M78 44 C85 36, 96 34, 102 46 C105 54, 100 64, 93 63" stroke="#C8921A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.9"/>
+              <path d="M100 46 L118 46 C124 46, 126 52, 122 56 C118 60, 112 58, 114 52 C116 46, 122 42, 130 44" stroke="#C8921A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.9"/>
+              <path d="M128 44 C135 36, 146 34, 150 46 C153 54, 149 64, 142 63 C136 62, 135 54, 140 48 C145 42, 155 40, 162 50" stroke="#C8921A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.9"/>
+              <path d="M160 50 C168 38, 180 36, 186 50 C190 60, 183 68, 176 65" stroke="#C8921A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.9"/>
+              <path d="M182 50 C190 38, 204 35, 210 50 C213 58, 207 66, 200 64" stroke="#C8921A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.9"/>
+              <path d="M207 52 L230 52 C238 52, 245 46, 250 38 C255 30, 258 20, 260 15" stroke="#C8921A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.9"/>
+              <!-- Underline flourish -->
+              <path d="M8 72 C80 66, 180 68, 265 70" stroke="rgba(200,146,26,0.4)" stroke-width="0.8" stroke-linecap="round" fill="none"/>
+              <path d="M250 67 C258 70, 268 75, 272 70" stroke="rgba(200,146,26,0.5)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+            </svg>
+
+            <div style="font-family:'Orbitron',monospace;font-size:13px;font-weight:900;color:var(--amber);letter-spacing:3px;margin-bottom:5px;">ADHRITYA</div>
+            <div style="font-size:9px;letter-spacing:3px;color:rgba(200,146,26,0.45);margin-bottom:3px;">SUPREME COMMANDER · S.A.T.Y.A.</div>
+            <div style="font-size:9px;letter-spacing:2px;color:rgba(200,146,26,0.3);">FOUNDED 2026 · IN THE TRADITION OF INA 1942</div>
+            <div style="font-family:'Noto Serif Devanagari',serif;font-size:12px;color:rgba(200,146,26,0.4);margin-top:6px;">अध्रित्य — सर्वोच्च सेनापति</div>
+          </div>
+        </div>
+
+        <!-- Right: JAI HIND -->
+        <div style="text-align:right;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(22px,3.5vw,38px);font-weight:900;color:var(--amber);text-shadow:0 0 25px rgba(200,146,26,0.35);letter-spacing:4px;animation:jai-pulse 2.5s ease-in-out infinite;margin-bottom:8px;">
+            JAI HIND_
+          </div>
+          <div style="font-family:'Noto Serif Devanagari',serif;font-size:16px;color:rgba(200,146,26,0.5);letter-spacing:2px;">जय हिंद</div>
+        </div>
+
+      </div>
+
     </div>
+
   </div>
 </section>
 
@@ -2608,7 +2970,7 @@ footer::before{
         हमने कभी हिंसा की वकालत नहीं की। कभी नहीं करेंगे।"
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:32px;">
+      <div class="disc-pillars" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:32px;">
         <div style="background:rgba(200,146,26,0.04);border:1px solid rgba(200,146,26,0.1);padding:24px 20px;text-align:center;">
           <div style="font-size:28px;margin-bottom:10px;">☮</div>
           <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:var(--amber);letter-spacing:2px;margin-bottom:8px;">NON-VIOLENT</div>
@@ -2660,7 +3022,7 @@ footer::before{
     <a class="fl-link" href="#women">Women Commanders</a>
     <a class="fl-link" href="#formations">Formations</a>
     <a class="fl-link" href="#disclaimer">Disclaimer</a>
-    <a class="fl-link" href="#enlist">Enlistment</a>
+    <a class="fl-link" href="#enlist">Declaration</a>
   </div>
   <div class="foot-note">
     > SATYA = सत्य = TRUTH<br>
@@ -2710,9 +3072,7 @@ bl.forEach(l=>{
 /* LOADER */
 window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('gone'),2800));
 
-/* CLOCK */
-function clk(){const n=new Date();document.getElementById('liveTime').textContent=n.toLocaleTimeString('en-IN',{hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'});}
-setInterval(clk,1000);clk();
+
 
 /* MAP DATA */
 const mapData={
@@ -2766,6 +3126,35 @@ function doEnlist(){
   const sp=document.getElementById('successPanel');sp.style.display='block';
   sp.scrollIntoView({behavior:'smooth',block:'center'});
 }
+
+/* MOBILE NAV */
+const menuToggle=document.getElementById('menuToggle');
+const mobileNav=document.getElementById('mobileNav');
+menuToggle.addEventListener('click',()=>{
+  mobileNav.classList.toggle('open');
+  const spans=menuToggle.querySelectorAll('span');
+  if(mobileNav.classList.contains('open')){
+    spans[0].style.transform='rotate(45deg) translate(4px,4px)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='rotate(-45deg) translate(4px,-4px)';
+  } else {
+    spans[0].style.transform='';
+    spans[1].style.opacity='1';
+    spans[2].style.transform='';
+  }
+});
+function closeMobileNav(){
+  mobileNav.classList.remove('open');
+  const spans=menuToggle.querySelectorAll('span');
+  spans[0].style.transform='';
+  spans[1].style.opacity='1';
+  spans[2].style.transform='';
+}
+document.addEventListener('click',e=>{
+  if(!menuToggle.contains(e.target)&&!mobileNav.contains(e.target)){
+    closeMobileNav();
+  }
+});
 
 /* PING ANIMATION */
 const s=document.createElement('style');
