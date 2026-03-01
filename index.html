@@ -1441,6 +1441,7 @@ footer::before{
   display:grid;
   grid-template-columns:320px 1fr;
   min-height:0;
+  overflow:hidden;
 }
 
 /* LEFT — the classification panel */
@@ -1450,7 +1451,7 @@ footer::before{
   display:flex;flex-direction:column;
   justify-content:space-between;
   position:relative;
-  overflow:hidden;
+  overflow:visible;
   min-width:0;
 }
 .f-left::after{
@@ -1473,13 +1474,13 @@ footer::before{
 .f-name{
   font-family:'Orbitron',monospace;
   font-weight:900;
-  line-height:1.1;
+  line-height:1.15;
   margin-bottom:8px;
   letter-spacing:0;
   word-break:break-word;
   overflow-wrap:break-word;
-  hyphens:auto;
-  overflow:hidden;
+  hyphens:none;
+  overflow:visible;
 }
 .f-name-hi{
   font-family:'Noto Serif Devanagari',serif;
@@ -1992,6 +1993,91 @@ footer::before{
   .boot-cyber { display: none; }
   .boot-vintage { padding: 30px 20px; }
   .boot-divider { display: none; }
+}
+
+/* ══ DECLARATION RESPONSIVE CLASSES ══ */
+.decl-inner{
+  max-width:1100px;margin:0 auto;
+  padding:60px 40px;
+}
+.decl-box{
+  border:1px solid rgba(200,146,26,0.25);
+  background:rgba(200,146,26,0.03);
+  padding:40px 44px;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:3px;
+}
+.decl-oath-box{
+  border:1px solid rgba(200,146,26,0.25);
+  padding:28px 28px;
+  background:rgba(200,146,26,0.05);
+  position:relative;
+  margin-bottom:28px;
+}
+.decl-sig-grid{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:32px;
+  align-items:end;
+}
+.decl-sig-box{
+  border:1px solid rgba(200,146,26,0.2);
+  background:rgba(200,146,26,0.03);
+  padding:24px 28px;
+  display:inline-block;
+  position:relative;
+  min-width:280px;
+  max-width:100%;
+}
+
+@media(max-width:768px){
+  .decl-inner{ padding:40px 20px; }
+  .decl-box{ padding:28px 20px; }
+  .decl-oath-box{ padding:20px 18px; }
+  .decl-sig-grid{ grid-template-columns:1fr; gap:20px; }
+  .decl-sig-grid > div:last-child{ text-align:left !important; }
+  .decl-sig-box{ min-width:0; width:100%; padding:20px 18px; }
+}
+@media(max-width:480px){
+  .decl-inner{ padding:32px 16px; }
+  .decl-box{ padding:20px 16px; }
+  .decl-oath-box{ padding:16px 14px; }
+}
+
+/* ══ DISCLAIMER RESPONSIVE CLASSES ══ */
+.disc-inner{
+  max-width:1000px;margin:0 auto;
+  padding:60px 40px;
+}
+.disc-box{
+  border:1px solid rgba(200,146,26,0.3);
+  background:rgba(200,146,26,0.03);
+  padding:40px 40px;
+  position:relative;
+  overflow:hidden;
+}
+.decl-article{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:14px 18px;
+  background:rgba(200,146,26,0.04);
+  border:1px solid rgba(200,146,26,0.1);
+}
+.decl-roman{
+  font-family:'Orbitron',monospace;
+  color:var(--amber);font-size:12px;
+  flex-shrink:0;margin-top:1px;
+}
+
+@media(max-width:768px){
+  .disc-inner{ padding:40px 20px; }
+  .disc-box{ padding:28px 18px; }
+  .decl-article{ padding:12px 14px; gap:12px; }
+}
+@media(max-width:480px){
+  .disc-inner{ padding:32px 14px; }
+  .disc-box{ padding:20px 14px; }
+  .decl-article{ padding:10px 12px; gap:10px; }
 }
 </style>
 </head>
@@ -2791,7 +2877,7 @@ footer::before{
 
 <!-- ══ DECLARATION ══ -->
 <section class="sec sec-enlist" id="enlist" style="background:linear-gradient(180deg,var(--void) 0%,var(--deep) 100%);border-top:1px solid var(--border);">
-  <div class="sec-inner" style="max-width:1100px;margin:0 auto;padding:80px 48px;">
+  <div class="sec-inner" class="decl-inner">
 
     <div class="sec-head reveal" style="margin-bottom:48px;">
       <span class="sh-code">> FOUNDING DOCUMENT · S.A.T.Y.A. · 2026 · OMEGA CLEARANCE</span>
@@ -2810,7 +2896,7 @@ footer::before{
     </div>
 
     <!-- FOUNDING DECLARATION TEXT -->
-    <div class="reveal" style="border:1px solid rgba(200,146,26,0.25);background:rgba(200,146,26,0.03);padding:52px 56px;position:relative;overflow:hidden;margin-bottom:3px;">
+    <div class="reveal" class="decl-box">
 
       <!-- Watermark -->
       <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-15deg);font-family:'Orbitron',monospace;font-size:clamp(30px,6vw,80px);font-weight:900;color:rgba(200,146,26,0.035);white-space:nowrap;pointer-events:none;letter-spacing:4px;">INA · SATYA · 2026</div>
@@ -2854,8 +2940,8 @@ footer::before{
       </div>
 
       <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:32px;position:relative;">
-        <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 18px;background:rgba(200,146,26,0.04);border:1px solid rgba(200,146,26,0.1);">
-          <span style="font-family:'Orbitron',monospace;color:var(--amber);font-size:12px;flex-shrink:0;margin-top:1px;">I.</span>
+        <div style="display:flex;gap:16px;align-items:flex-start;class="decl-article">
+          <span class="decl-roman">I.</span>
           <span style="font-size:13px;line-height:1.9;color:rgba(232,213,168,0.75);">That <strong style="color:var(--paper);">S.A.T.Y.A. — Strategic Analysis & Tactical Yield Agency</strong> is the direct spiritual successor to the Indian National Army, founded 2026, carrying forward the INA founding belief of Ittefaq, Etmad, and Kurbani into the 21st century.</span>
         </div>
         <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 18px;background:rgba(200,146,26,0.04);border:1px solid rgba(200,146,26,0.1);">
@@ -2873,7 +2959,7 @@ footer::before{
       </div>
 
       <!-- The Oath - full width -->
-      <div style="border:1px solid rgba(200,146,26,0.25);padding:32px 36px;background:rgba(200,146,26,0.05);position:relative;margin-bottom:28px;">
+      <div class="decl-oath-box">
         <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:4px;color:rgba(200,146,26,0.4);margin-bottom:16px;">> THE SATYA OATH · शपथ — FOUNDED IN INA TRADITION</div>
         <div style="font-family:'Playfair Display',serif;font-size:clamp(15px,1.8vw,19px);font-style:italic;color:var(--paper);line-height:2;margin-bottom:16px;">
           "I, a citizen of India, before the memory of those who gave everything and asked nothing —<br><br>
@@ -2898,7 +2984,7 @@ footer::before{
       <!-- Seal & Signature -->
       <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(200,146,26,0.25),transparent);margin:28px 0;"></div>
 
-      <div class="decl-sig-grid" style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;flex-wrap:wrap;">
+      <div class="decl-sig-grid">
 
         <!-- Left: Agency seal text -->
         <div>
@@ -2907,7 +2993,7 @@ footer::before{
           </div>
 
           <!-- Signature block -->
-          <div style="border:1px solid rgba(200,146,26,0.2);background:rgba(200,146,26,0.03);padding:28px 32px;display:inline-block;position:relative;min-width:340px;">
+          <div class="decl-sig-box">
             <div style="position:absolute;top:8px;left:8px;width:14px;height:14px;border-top:1px solid var(--amber);border-left:1px solid var(--amber);"></div>
             <div style="position:absolute;bottom:8px;right:8px;width:14px;height:14px;border-bottom:1px solid rgba(0,232,122,0.4);border-right:1px solid rgba(0,232,122,0.4);"></div>
 
@@ -2952,7 +3038,7 @@ footer::before{
 
 <!-- ══ DISCLAIMER ══ -->
 <section class="sec" id="disclaimer" style="background:var(--deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="sec-inner" style="max-width:1000px;margin:0 auto;padding:70px 48px;">
+  <div class="sec-inner" class="disc-inner">
 
     <div class="sec-head reveal" style="margin-bottom:36px;">
       <span class="sh-code">> OFFICIAL STATEMENT · S.A.T.Y.A. · ALL CLEARANCES</span>
@@ -2961,7 +3047,7 @@ footer::before{
       <span class="sh-hi">अस्वीकरण — कृपया ध्यान से पढ़ें</span>
     </div>
 
-    <div class="reveal" style="border:1px solid rgba(200,146,26,0.3);background:rgba(200,146,26,0.03);padding:44px 48px;position:relative;overflow:hidden;">
+    <div class="reveal" class="disc-box">
 
       <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-20deg);font-family:'Orbitron',monospace;font-size:clamp(36px,7vw,90px);font-weight:900;color:rgba(200,146,26,0.04);white-space:nowrap;pointer-events:none;letter-spacing:6px;">SATYA · PEACE · TRUTH</div>
       <div style="position:absolute;top:14px;left:14px;width:20px;height:20px;border-top:2px solid var(--amber);border-left:2px solid var(--amber);"></div>
