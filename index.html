@@ -1353,6 +1353,354 @@ footer::before{
   .h-nav,.hero-stats{display:none;}
   .hero-inner{padding:80px 24px;}
 }
+
+
+/* ══ FORMATIONS PAGE STYLES ══ */
+/* PAGE HERO */
+.page-hero{
+  padding:80px 48px 60px;
+  max-width:1280px;margin:0 auto;
+  position:relative;
+}
+.page-hero::before{
+  content:'';
+  position:absolute;top:0;left:48px;
+  width:3px;height:100%;
+  background:linear-gradient(180deg,var(--amber),transparent);
+}
+.ph-code{font-size:9px;letter-spacing:4px;color:rgba(200,146,26,0.45);display:block;margin-bottom:8px;}
+.ph-title{
+  font-family:'Orbitron',monospace;
+  font-size:clamp(32px,6vw,72px);
+  font-weight:900;letter-spacing:4px;
+  color:var(--paper);line-height:1;
+  margin-bottom:8px;
+}
+.ph-title .a{color:var(--amber);text-shadow:0 0 20px rgba(200,146,26,0.4);}
+.ph-sub{font-size:12px;letter-spacing:3px;color:rgba(200,146,26,0.4);margin-bottom:6px;}
+.ph-hi{font-family:'Noto Serif Devanagari',serif;font-size:16px;color:rgba(232,213,168,0.45);}
+.ph-desc{
+  max-width:700px;
+  font-size:12px;line-height:1.95;
+  color:rgba(200,166,100,0.55);
+  margin-top:18px;
+  border-left:3px solid rgba(200,146,26,0.2);
+  padding-left:16px;
+}
+
+/* FORMATION CARDS */
+.formations-wrap{
+  max-width:1280px;margin:0 auto;
+  padding:0 48px 100px;
+  display:flex;flex-direction:column;gap:3px;
+}
+
+/* Each formation = full-width dramatic card */
+.formation{
+  position:relative;
+  border:1px solid rgba(200,146,26,0.1);
+  overflow:hidden;
+  transition:border-color 0.4s;
+  cursor:none;
+}
+.formation:hover{border-color:rgba(200,146,26,0.35);}
+
+/* Ambient background glow per formation */
+.formation::before{
+  content:'';
+  position:absolute;inset:0;
+  opacity:0;transition:opacity 0.5s;
+  pointer-events:none;z-index:0;
+}
+.formation:hover::before{opacity:1;}
+
+/* Formation number watermark */
+.f-watermark{
+  position:absolute;
+  right:-20px;top:50%;transform:translateY(-50%);
+  font-family:'Orbitron',monospace;
+  font-size:200px;font-weight:900;
+  line-height:1;
+  opacity:0.03;
+  color:var(--amber);
+  pointer-events:none;
+  z-index:1;
+  transition:opacity 0.4s;
+  letter-spacing:-10px;
+}
+.formation:hover .f-watermark{opacity:0.055;}
+
+.f-inner{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:280px 1fr;
+  min-height:320px;
+}
+
+/* LEFT — the classification panel */
+.f-left{
+  padding:40px 32px;
+  border-right:1px solid rgba(200,146,26,0.1);
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+  overflow:hidden;
+}
+.f-left::after{
+  content:'';
+  position:absolute;top:0;left:0;
+  width:3px;height:100%;
+}
+
+.f-number{
+  font-family:'Orbitron',monospace;
+  font-size:11px;letter-spacing:4px;
+  color:rgba(200,146,26,0.35);
+  margin-bottom:6px;display:block;
+}
+.f-code{
+  font-size:9px;letter-spacing:3px;
+  color:rgba(200,146,26,0.3);
+  display:block;margin-bottom:20px;
+}
+.f-name{
+  font-family:'Orbitron',monospace;
+  font-weight:900;
+  line-height:1.05;
+  margin-bottom:8px;
+  letter-spacing:2px;
+}
+.f-name-hi{
+  font-family:'Noto Serif Devanagari',serif;
+  font-size:15px;
+  color:rgba(200,146,26,0.5);
+  display:block;margin-bottom:20px;
+}
+.f-emblem{
+  width:70px;height:70px;
+  border:1px solid rgba(200,146,26,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:36px;
+  background:rgba(200,146,26,0.04);
+  position:relative;margin-bottom:16px;
+}
+.f-emblem::before,.f-emblem::after{
+  content:'';position:absolute;
+  width:10px;height:10px;
+}
+.f-emblem::before{top:-1px;left:-1px;border-top:2px solid var(--amber);border-left:2px solid var(--amber);}
+.f-emblem::after{bottom:-1px;right:-1px;border-bottom:2px solid rgba(0,232,122,0.5);border-right:2px solid rgba(0,232,122,0.5);}
+
+.f-status{
+  font-size:8px;letter-spacing:2px;
+  padding:4px 10px;
+  display:inline-block;
+  border:1px solid;
+  margin-top:auto;
+}
+
+/* RIGHT — content panel */
+.f-right{
+  padding:40px 44px;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+}
+.f-tagline{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,2.5vw,28px);
+  font-style:italic;font-weight:700;
+  color:var(--paper);
+  margin-bottom:20px;
+  line-height:1.35;
+}
+.f-tagline .acc{color:var(--amber);}
+.f-body{
+  font-size:13px;line-height:2;
+  color:rgba(200,166,100,0.6);
+  margin-bottom:20px;
+  max-width:680px;
+}
+.f-body strong{color:rgba(232,213,168,0.85);}
+
+.f-attributes{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  margin-bottom:20px;
+}
+.fa-block{
+  background:rgba(200,146,26,0.04);
+  border:1px solid rgba(200,146,26,0.08);
+  padding:14px 16px;
+  transition:all 0.3s;
+}
+.formation:hover .fa-block{border-color:rgba(200,146,26,0.18);}
+.fab-label{font-size:8px;letter-spacing:2px;color:rgba(200,146,26,0.4);display:block;margin-bottom:5px;}
+.fab-value{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--amber);}
+
+.f-doctrine{
+  border-left:3px solid var(--amber);
+  padding:12px 16px;
+  background:rgba(200,146,26,0.04);
+  font-family:'Playfair Display',serif;
+  font-size:14px;font-style:italic;
+  color:rgba(232,213,168,0.7);
+  line-height:1.7;
+}
+.f-doctrine-hi{
+  font-family:'Noto Serif Devanagari',serif;
+  font-style:normal;font-size:13px;
+  color:rgba(232,213,168,0.5);
+  display:block;margin-top:6px;
+}
+
+/* ═══════════════
+   FORMATION 1 — EAGLE
+   Classic. Command. Strategy.
+═══════════════ */
+.f-eagle .f-left{background:linear-gradient(135deg,rgba(10,14,18,0.95),rgba(6,10,14,0.9));}
+.f-eagle .f-left::after{background:linear-gradient(180deg,#C8921A,rgba(200,146,26,0.2));}
+.f-eagle .f-name{font-size:clamp(24px,3.5vw,42px);color:var(--amber);text-shadow:0 0 20px rgba(200,146,26,0.3);}
+.f-eagle .f-status{border-color:rgba(200,146,26,0.35);color:var(--amber);}
+.f-eagle::before{background:radial-gradient(ellipse at 0% 50%,rgba(200,146,26,0.04) 0%,transparent 60%);}
+.f-eagle .f-watermark{color:var(--amber);}
+
+/* ═══════════════
+   FORMATION 2 — T3CHNO F0RMATIO9
+   Cyber. Data. Digital warfare.
+═══════════════ */
+.f-techno .f-left{background:linear-gradient(135deg,rgba(2,12,6,0.95),rgba(4,14,8,0.9));}
+.f-techno .f-left::after{background:linear-gradient(180deg,var(--green),rgba(0,232,122,0.1));}
+.f-techno .f-name{font-size:clamp(20px,3vw,36px);color:var(--green);text-shadow:0 0 20px rgba(0,232,122,0.3);}
+.f-techno .f-status{border-color:rgba(0,232,122,0.35);color:var(--green2);}
+.f-techno .f-tagline .acc{color:var(--green);}
+.f-techno .f-doctrine{border-left-color:var(--green);background:rgba(0,232,122,0.04);}
+.f-techno .f-emblem{border-color:rgba(0,232,122,0.25);background:rgba(0,232,122,0.04);}
+.f-techno .f-emblem::before{border-color:var(--green);}
+.f-techno .fa-block{background:rgba(0,232,122,0.03);border-color:rgba(0,232,122,0.08);}
+.f-techno:hover .fa-block{border-color:rgba(0,232,122,0.2);}
+.f-techno .fab-value{color:var(--green);}
+.f-techno .fab-label{color:rgba(0,232,122,0.4);}
+.f-techno::before{background:radial-gradient(ellipse at 0% 50%,rgba(0,232,122,0.04) 0%,transparent 60%);}
+.f-techno .f-watermark{color:var(--green);}
+/* Glitch effect on name */
+.f-techno .f-name{
+  position:relative;
+  animation:glitch-subtle 6s step-end infinite;
+}
+@keyframes glitch-subtle{
+  0%,92%,100%{text-shadow:0 0 20px rgba(0,232,122,0.3);}
+  94%{text-shadow:-2px 0 rgba(255,42,42,0.4),2px 0 rgba(0,232,122,0.4);}
+  96%{text-shadow:2px 0 rgba(255,42,42,0.3),-2px 0 rgba(0,232,122,0.3);}
+}
+/* Data stream bg for techno */
+.f-techno::after{
+  content:'01 10 11 00 INA SATYA 01 10 AZAD 11 HIND 00 01 TRUTH 10 11 ITTEFAQ 00 01 KURBANI 10 ETMAD 11 01 00';
+  position:absolute;inset:0;
+  font-size:9px;letter-spacing:1px;
+  color:rgba(0,232,122,0.025);
+  word-break:break-all;line-height:1.6;
+  overflow:hidden;pointer-events:none;z-index:0;
+  padding:10px;
+}
+
+/* ═══════════════
+   FORMATION 3 — ELITE
+   Precision. Shadow. Honour.
+═══════════════ */
+.f-elite .f-left{background:linear-gradient(135deg,rgba(14,4,4,0.95),rgba(10,2,2,0.9));}
+.f-elite .f-left::after{background:linear-gradient(180deg,#FF2A2A,rgba(255,42,42,0.1));}
+.f-elite .f-name{font-size:clamp(24px,4vw,48px);color:#FF6644;text-shadow:0 0 20px rgba(255,42,42,0.3);}
+.f-elite .f-status{border-color:rgba(255,42,42,0.35);color:#FF6644;}
+.f-elite .f-tagline .acc{color:#FF6644;}
+.f-elite .f-doctrine{border-left-color:#FF6644;background:rgba(255,42,42,0.03);}
+.f-elite .f-emblem{border-color:rgba(255,42,42,0.25);background:rgba(255,42,42,0.04);}
+.f-elite .f-emblem::before{border-color:#FF6644;}
+.f-elite .fa-block{background:rgba(255,42,42,0.03);border-color:rgba(255,42,42,0.08);}
+.f-elite:hover .fa-block{border-color:rgba(255,42,42,0.2);}
+.f-elite .fab-value{color:#FF6644;}
+.f-elite .fab-label{color:rgba(255,100,68,0.45);}
+.f-elite::before{background:radial-gradient(ellipse at 0% 50%,rgba(255,42,42,0.04) 0%,transparent 60%);}
+.f-elite .f-watermark{color:#FF4422;}
+
+/* ═══════════════
+   FORMATION 4 — CROWN
+   Supreme. Legacy. Eternal.
+═══════════════ */
+.f-crown .f-left{
+  background:linear-gradient(135deg,rgba(14,10,2,0.98),rgba(10,6,0,0.95));
+}
+.f-crown .f-left::after{
+  background:linear-gradient(180deg,#FFD700,rgba(255,215,0,0.1));
+}
+.f-crown .f-name{
+  font-size:clamp(24px,4vw,48px);
+  color:#FFD700;
+  text-shadow:0 0 30px rgba(255,215,0,0.4),0 0 60px rgba(255,215,0,0.15);
+}
+.f-crown .f-status{border-color:rgba(255,215,0,0.4);color:#FFD700;}
+.f-crown .f-tagline .acc{color:#FFD700;}
+.f-crown .f-doctrine{border-left-color:#FFD700;background:rgba(255,215,0,0.04);}
+.f-crown .f-emblem{
+  border-color:rgba(255,215,0,0.35);background:rgba(255,215,0,0.05);
+  animation:crown-pulse 3s ease-in-out infinite;
+}
+@keyframes crown-pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,215,0,0);}
+  50%{box-shadow:0 0 20px 4px rgba(255,215,0,0.12);}
+}
+.f-crown .f-emblem::before{border-color:#FFD700;}
+.f-crown .f-emblem::after{border-color:rgba(255,215,0,0.5);}
+.f-crown .fa-block{background:rgba(255,215,0,0.04);border-color:rgba(255,215,0,0.1);}
+.f-crown:hover .fa-block{border-color:rgba(255,215,0,0.25);}
+.f-crown .fab-value{color:#FFD700;}
+.f-crown .fab-label{color:rgba(255,215,0,0.45);}
+.f-crown::before{background:radial-gradient(ellipse at 0% 50%,rgba(255,215,0,0.05) 0%,transparent 60%);}
+.f-crown .f-watermark{color:#FFD700;}
+/* Gold shimmer effect */
+.f-crown .f-name{
+  background:linear-gradient(90deg,#C8921A,#FFD700,#FFF0AA,#FFD700,#C8921A);
+  background-size:200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:gold-shimmer 4s linear infinite;
+}
+@keyframes gold-shimmer{
+  0%{background-position:200%;}
+  100%{background-position:-200%;}
+}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* FOOTER */
+.page-footer{
+  background:var(--void);
+  border-top:1px solid var(--border);
+  padding:30px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.pf-left{font-size:10px;letter-spacing:2px;color:rgba(200,146,26,0.35);}
+.pf-right a{
+  font-family:'Orbitron',monospace;
+  font-size:11px;letter-spacing:3px;
+  color:var(--amber);text-decoration:none;
+  border:1px solid rgba(200,146,26,0.25);
+  padding:8px 18px;
+  transition:all 0.3s;cursor:none;
+}
+.pf-right a:hover{background:var(--amber-glow);box-shadow:0 0 15px rgba(200,146,26,0.1);}
+
+@media(max-width:800px){
+  .f-inner{grid-template-columns:1fr;}
+  .f-left{border-right:none;border-bottom:1px solid rgba(200,146,26,0.1);}
+  .f-attributes{grid-template-columns:1fr 1fr;}
+  .h-nav{display:none;}
+  .page-hero,.formations-wrap{padding-left:24px;padding-right:24px;}
+}
+
 </style>
 </head>
 <body>
@@ -1398,6 +1746,8 @@ footer::before{
     <li><a href="#ops">OPS</a></li>
     <li><a href="#naval">1946</a></li>
     <li><a href="#women">AGENTS</a></li>
+    <li><a href="#formations">FORMATIONS</a></li>
+    <li><a href="#disclaimer">DISCLAIMER</a></li>
     <li><a href="#enlist">ENLIST</a></li>
   </ul></nav>
   <div class="h-right">
@@ -1931,6 +2281,208 @@ footer::before{
   </div>
 </section>
 
+<!-- ══ FORMATIONS SECTION ══ -->
+
+
+<!-- PAGE HERO -->
+<div class="page-hero reveal" id="formations">
+  <span class="ph-code">> FILE: SATYA_OPERATIONAL_FORMATIONS · OMEGA CLEARANCE</span>
+  <h1 class="ph-title">THE <span class="a">FORMATIONS</span></h1>
+  <div class="ph-sub">// FOUR DIVISIONS · ONE MISSION · ITTEFAQ · ETMAD · KURBANI</div>
+  <div class="ph-hi">चार टुकड़ियाँ — एक लक्ष्य</div>
+  <p class="ph-desc">S.A.T.Y.A. operates through four distinct formations — each shaped for a different theatre of engagement. Every formation follows the founding belief of the Indian National Army: Unity, Trust, Sacrifice. Different methods. Same soul.</p>
+</div>
+
+<!-- FORMATIONS -->
+<div class="formations-wrap">
+
+  <!-- ══ FORMATION 1: THE EAGLE ══ -->
+  <div class="formation f-eagle reveal">
+    <div class="f-watermark">01</div>
+    <div class="f-inner">
+      <div class="f-left">
+        <div>
+          <span class="f-number">FORMATION · 01</span>
+          <span class="f-code">> DESIGNATION: EAGLE-1 · EST. 2026</span>
+          <div class="f-emblem">🦅</div>
+          <div class="f-name">THE EAGLE<br>FORMATION</div>
+          <span class="f-name-hi">ईगल दस्ता</span>
+        </div>
+        <span class="f-status">STATUS: ACTIVE · FIELD</span>
+      </div>
+      <div class="f-right">
+        <div class="f-tagline">
+          "Those who see from <span class="acc">above the storm</span> —<br>
+          and strike only when the moment is perfect."
+        </div>
+        <p class="f-body">
+          The Eagle Formation is S.A.T.Y.A.'s <strong>strategic command and reconnaissance wing</strong>. Modelled on the INA's original command structure — where officers like Shah Nawaz Khan and Prem Sahgal led not just with rank but with moral authority — the Eagle Formation operates at the highest level of civic and strategic engagement.<br><br>
+          Eagle operatives are <strong>analysts, strategists, and field commanders</strong>. They observe, assess, and act with precision. They do not react — they respond. Like Netaji, who planned the INA's entire southeastern theatre from a map table in Singapore, Eagle Formation members are trained to see the full picture before making a move.<br><br>
+          The eagle in Indian tradition is Garuda — <strong>the vehicle of Vishnu, destroyer of serpents</strong>. It sees what others cannot. It flies where others cannot follow. Every Eagle operative carries that responsibility: clarity of vision, swiftness of action, and the discipline to wait for the right moment.
+        </p>
+        <div class="f-attributes">
+          <div class="fa-block">
+            <span class="fab-label">PRIMARY ROLE</span>
+            <span class="fab-value">STRATEGY</span>
+          </div>
+          <div class="fa-block">
+            <span class="fab-label">DOMAIN</span>
+            <span class="fab-value">FIELD OPS</span>
+          </div>
+          <div class="fa-block">
+            <span class="fab-label">INA PARALLEL</span>
+            <span class="fab-value">COMMAND DIV.</span>
+          </div>
+        </div>
+        <div class="f-doctrine">
+          "An eagle does not catch flies. Choose your battles with the precision of a bird of prey — height gives perspective, and perspective gives wisdom."
+          <span class="f-doctrine-hi">ईगल मक्खियाँ नहीं पकड़ता। अपनी लड़ाई शिकारी पक्षी की सटीकता से चुनो — ऊँचाई से दृष्टिकोण मिलता है, और दृष्टिकोण से बुद्धि।</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FORMATION 2: T3CHNO F0RMATI09 ══ -->
+  <div class="formation f-techno reveal">
+    <div class="f-watermark">02</div>
+    <div class="f-inner">
+      <div class="f-left">
+        <div>
+          <span class="f-number">FORMATION · 02</span>
+          <span class="f-code">> DESIGNATION: T3CHN0-9 · EST. 2026 · CYBER THEATRE</span>
+          <div class="f-emblem">⚡</div>
+          <div class="f-name">T3CHNO<br>F0RMATI09</div>
+          <span class="f-name-hi" style="color:rgba(0,232,122,0.5)">तकनीकी दस्ता</span>
+        </div>
+        <span class="f-status">STATUS: ONLINE · ENCRYPTED</span>
+      </div>
+      <div class="f-right">
+        <div class="f-tagline">
+          "The battlefield of the 21st century is <span class="acc">data, code, and narrative</span> —<br>
+          we fight with all three."
+        </div>
+        <p class="f-body">
+          The T3chno F0rmati09 is S.A.T.Y.A.'s <strong>digital warfare and technology intelligence wing</strong>. Its name is deliberately encoded — numbers replacing letters — because this formation operates in the space between language and machine: where truth can be buried in algorithms, and where it can also be excavated.<br><br>
+          INA's Tiger Cipher Corps — a 400-strong signals intelligence unit that took Bletchley Park 11 months to crack — is the spiritual ancestor of this formation. Like them, T3chno F0rmati09 members understand that <strong>information is a weapon, and code is a language of power</strong>.<br><br>
+          Operatives of this formation are <strong>technologists, coders, data analysts, cybersecurity experts, and digital journalists</strong>. In a world where disinformation spreads faster than truth, this formation exists to reverse that equation — using the same digital infrastructure to <strong>verify, expose, and build</strong>. The "9" in the name is not a typo. It is a signal: formation nine is the highest single digit — as close to completion as you can get before starting again.
+        </p>
+        <div class="f-attributes">
+          <div class="fa-block">
+            <span class="fab-label">PRIMARY ROLE</span>
+            <span class="fab-value">CYBER / DATA</span>
+          </div>
+          <div class="fa-block">
+            <span class="fab-label">DOMAIN</span>
+            <span class="fab-value">DIGITAL</span>
+          </div>
+          <div class="fa-block">
+            <span class="fab-label">INA PARALLEL</span>
+            <span class="fab-value">TIGER CIPHER</span>
+          </div>
+        </div>
+        <div class="f-doctrine" style="border-left-color:var(--green);background:rgba(0,232,122,0.04);">
+          "In 1943, INA broke British codes with 400 soldiers and a cipher. In 2026, we break disinformation with data and conscience. The tools change. The mission does not."
+          <span class="f-doctrine-hi" style="color:rgba(0,200,100,0.5)">1943 में INA ने 400 सैनिकों और एक सिफर से ब्रिटिश कोड तोड़े। 2026 में हम डेटा और ज़मीर से झूठ तोड़ते हैं।</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FORMATION 3: THE ELITE ══ -->
+  <div class="formation f-elite reveal">
+    <div class="f-watermark">03</div>
+    <div class="f-inner">
+      <div class="f-left">
+        <div>
+          <span class="f-number">FORMATION · 03</span>
+          <span class="f-code">> DESIGNATION: ELITE-3 · EST. 2026 · SHADOW THEATRE</span>
+          <div class="f-emblem">⚔️</div>
+          <div class="f-name">THE ELITE<br>FORMATION</div>
+          <span class="f-name-hi" style="color:rgba(255,100,68,0.5)">एलीट दस्ता</span>
+        </div>
+        <span class="f-status">STATUS: ACTIVE · CLASSIFIED</span>
+      </div>
+      <div class="f-right">
+        <div class="f-tagline">
+          "Not the loudest voice in the room —<br>
+          but the one that <span class="acc">cannot be ignored</span>."
+        </div>
+        <p class="f-body">
+          The Elite Formation is S.A.T.Y.A.'s <strong>precision action and deep civic engagement wing</strong>. Where Eagle Formation plans and T3chno Formation fights in digital space, the Elite Formation operates on the ground — in courtrooms, in civic institutions, in communities, in the unglamorous machinery of how a nation actually functions day to day.<br><br>
+          Its inspiration is the INA's <strong>Vigilance Corps</strong> — the counterintelligence unit that operated in the shadows of the Burma campaign, identifying threats from within, protecting the mission's integrity at its most vulnerable points. The Elite Formation carries this legacy forward: not through secrecy, but through <strong>precision, discipline, and an absolute refusal to be corrupted</strong>.<br><br>
+          Elite operatives are <strong>lawyers, civil servants, RTI activists, investigative journalists, and civic watchdogs</strong>. They are not famous. They are not celebrated. They work in the infrastructure of accountability — filing cases, exposing corruption, building institutions that outlast any individual. The Rani Jhansi Regiment — 1,500 women who fought without recognition, without salary, without a history textbook that remembers their names — is their permanent inspiration.
+        </p>
+        <div class="f-attributes">
+          <div class="fa-block">
+            <span class="fab-label">PRIMARY ROLE</span>
+            <span class="fab-value">PRECISION</span>
+          </div>
+          <div class="fa-block">
+            <span class="fab-label">DOMAIN</span>
+            <span class="fab-value">CIVIC / LAW</span>
+          </div>
+          <div class="fa-block">
+            <span class="fab-label">INA PARALLEL</span>
+            <span class="fab-value">VIGILANCE CORPS</span>
+          </div>
+        </div>
+        <div class="f-doctrine">
+          "The most dangerous operative is not the loudest. It is the one who refuses to stop — who files the next RTI, who shows up to the next hearing, who speaks the next truth. Quietly. Again and again."
+          <span class="f-doctrine-hi" style="color:rgba(255,100,68,0.45)">सबसे खतरनाक ऑपरेटिव वो नहीं जो सबसे ऊँचा बोलता है — बल्कि वो जो रुकता नहीं। जो अगला RTI दाखिल करता है। जो अगली सुनवाई में आता है।</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FORMATION 4: THE CROWN ══ -->
+  <div class="formation f-crown reveal">
+    <div class="f-watermark">04</div>
+    <div class="f-inner">
+      <div class="f-left">
+        <div>
+          <span class="f-number">FORMATION · 04</span>
+          <span class="f-code">> DESIGNATION: CROWN-∞ · EST. 2026 · APEX COMMAND</span>
+          <div class="f-emblem" style="font-size:30px;">👑</div>
+          <div class="f-name">THE CROWN<br>FORMATION</div>
+          <span class="f-name-hi" style="color:rgba(255,215,0,0.5)">क्राउन दस्ता — शिखर</span>
+        </div>
+        <span class="f-status" style="border-color:rgba(255,215,0,0.4);color:#FFD700;">STATUS: ETERNAL · APEX</span>
+      </div>
+      <div class="f-right">
+        <div class="f-tagline">
+          "A crown is not given. It is <span class="acc">forged</span> —<br>
+          by fire, by sacrifice, by the refusal to ever bow."
+        </div>
+        <p class="f-body">
+          The Crown Formation is the <strong>apex of S.A.T.Y.A. — the formation that all others serve and protect</strong>. It does not operate in any single domain. It is not defined by technology, law, or strategy alone. The Crown Formation is the living embodiment of the INA's founding trinity: <strong>Ittefaq, Etmad, Kurbani</strong> — carried forward as an unbroken flame from 1942 to today.<br><br>
+          Its name evokes the crown not of kings, but of <strong>martyrs</strong>. In Islamic tradition, the crown of the shaheed is worn in paradise. In Hindu tradition, the mukut of the warrior-saint is the symbol of dharma upheld against all odds. In Sikh tradition, the dastar is the crown that cannot be surrendered. <strong>The Crown Formation belongs to all these traditions — and to none exclusively</strong>, because it was the INA itself that proved India's identity is not the sum of its divisions but the integrity of its purpose.<br><br>
+          Crown operatives are the <strong>keepers of the flame</strong>. They are the ones who carry the story forward — educators, historians, artists, cultural custodians, and the unnamed people in every generation who, when history demands it, stand up and say: <em>"Not on my watch."</em> Netaji Bose was a Crown operative. The 40,000 who followed him were Crown operatives. You are reading this because somewhere in their sacrifice, they made you possible.
+        </p>
+        <div class="f-attributes">
+          <div class="fa-block">
+            <span class="fab-label">PRIMARY ROLE</span>
+            <span class="fab-value">LEGACY</span>
+          </div>
+          <div class="fa-block">
+            <span class="fab-label">DOMAIN</span>
+            <span class="fab-value">ALL THEATRES</span>
+          </div>
+          <div class="fa-block">
+            <span class="fab-label">INA PARALLEL</span>
+            <span class="fab-value">AZAD HIND GOVT.</span>
+          </div>
+        </div>
+        <div class="f-doctrine" style="border-left-color:#FFD700;background:rgba(255,215,0,0.04);">
+          "The INA soldier wore no crown. He was given no medal, no pension, no parade. Yet history remembers him above all who were decorated. That is the Crown Formation's truth: the highest honour is the one that cannot be taken away."
+          <span class="f-doctrine-hi" style="color:rgba(255,215,0,0.45)">INA के सैनिक ने कोई ताज नहीं पहना। उसे कोई पदक, पेंशन, या परेड नहीं मिली। फिर भी इतिहास उसे सबसे ऊपर याद करता है।</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
 <!-- ══ ENLIST ══ -->
 <section class="sec sec-enlist" id="enlist">
   <div class="sec-inner">
@@ -2014,6 +2566,79 @@ footer::before{
   </div>
 </section>
 
+
+<!-- ══ DISCLAIMER ══ -->
+<section class="sec" id="disclaimer" style="background:var(--deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="sec-inner" style="max-width:1000px;margin:0 auto;padding:70px 48px;">
+
+    <div class="sec-head reveal" style="margin-bottom:36px;">
+      <span class="sh-code">> OFFICIAL STATEMENT · S.A.T.Y.A. · ALL CLEARANCES</span>
+      <h2 class="sh-title" style="font-size:clamp(28px,4vw,52px);">DISCLAIMER</h2>
+      <span class="sh-sub">// READ BEFORE PROCEEDING — THIS IS NON-NEGOTIABLE</span>
+      <span class="sh-hi">अस्वीकरण — कृपया ध्यान से पढ़ें</span>
+    </div>
+
+    <div class="reveal" style="border:1px solid rgba(200,146,26,0.3);background:rgba(200,146,26,0.03);padding:44px 48px;position:relative;overflow:hidden;">
+
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-20deg);font-family:'Orbitron',monospace;font-size:clamp(36px,7vw,90px);font-weight:900;color:rgba(200,146,26,0.04);white-space:nowrap;pointer-events:none;letter-spacing:6px;">SATYA · PEACE · TRUTH</div>
+      <div style="position:absolute;top:14px;left:14px;width:20px;height:20px;border-top:2px solid var(--amber);border-left:2px solid var(--amber);"></div>
+      <div style="position:absolute;top:14px;right:14px;width:20px;height:20px;border-top:2px solid var(--amber);border-right:2px solid var(--amber);"></div>
+      <div style="position:absolute;bottom:14px;left:14px;width:20px;height:20px;border-bottom:2px solid rgba(0,232,122,0.4);border-left:2px solid rgba(0,232,122,0.4);"></div>
+      <div style="position:absolute;bottom:14px;right:14px;width:20px;height:20px;border-bottom:2px solid rgba(0,232,122,0.4);border-right:2px solid rgba(0,232,122,0.4);"></div>
+
+      <div style="text-align:center;margin-bottom:28px;">
+        <img src="data:image/png;base64,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" style="width:80px;height:96px;object-fit:contain;filter:brightness(1.05);opacity:0.85;" alt="INA Insignia">
+      </div>
+
+      <div style="text-align:center;margin-bottom:24px;">
+        <span style="font-family:'Orbitron',monospace;font-size:10px;letter-spacing:5px;color:rgba(200,146,26,0.5);">OFFICIAL POSITION OF S.A.T.Y.A.</span>
+      </div>
+
+      <div style="font-family:'Playfair Display',serif;font-size:clamp(16px,2vw,20px);font-weight:700;font-style:italic;color:var(--paper);line-height:1.8;text-align:center;margin-bottom:24px;border-bottom:1px solid rgba(200,146,26,0.15);padding-bottom:24px;">
+        "S.A.T.Y.A. follows the <span style="color:var(--amber);">belief</span> of the Indian National Army —<br>
+        not its wars, not its weapons, not its battles.<br>
+        We are a <span style="color:var(--amber);">peaceful, non-violent</span> civic movement.<br>
+        We have never advocated violence. We never will."
+      </div>
+
+      <div style="font-family:'Noto Serif Devanagari',serif;font-size:clamp(14px,1.8vw,18px);color:rgba(232,213,168,0.65);line-height:1.95;text-align:center;margin-bottom:32px;border-bottom:1px solid rgba(200,146,26,0.1);padding-bottom:28px;">
+        "S.A.T.Y.A. भारतीय राष्ट्रीय सेना के <span style="color:var(--amber);">विश्वास</span> का अनुसरण करती है —<br>
+        उसके युद्धों का नहीं, उसके हथियारों का नहीं।<br>
+        हम एक <span style="color:var(--amber);">शांतिपूर्ण और अहिंसक</span> नागरिक आंदोलन हैं।<br>
+        हमने कभी हिंसा की वकालत नहीं की। कभी नहीं करेंगे।"
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:32px;">
+        <div style="background:rgba(200,146,26,0.04);border:1px solid rgba(200,146,26,0.1);padding:24px 20px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:10px;">☮</div>
+          <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:var(--amber);letter-spacing:2px;margin-bottom:8px;">NON-VIOLENT</div>
+          <div style="font-family:'Noto Sans Devanagari',sans-serif;font-size:12px;color:rgba(200,146,26,0.5);margin-bottom:10px;">अहिंसक</div>
+          <div style="font-size:12px;line-height:1.85;color:rgba(200,166,100,0.55);">We reject all forms of physical violence, intimidation, or coercion — without exception. Our only weapons are truth, evidence, and conscience.</div>
+        </div>
+        <div style="background:rgba(200,146,26,0.04);border:1px solid rgba(200,146,26,0.1);padding:24px 20px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:10px;">📜</div>
+          <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:var(--amber);letter-spacing:2px;margin-bottom:8px;">CONSTITUTIONAL</div>
+          <div style="font-family:'Noto Sans Devanagari',sans-serif;font-size:12px;color:rgba(200,146,26,0.5);margin-bottom:10px;">संवैधानिक</div>
+          <div style="font-size:12px;line-height:1.85;color:rgba(200,166,100,0.55);">Every action of S.A.T.Y.A. is conducted within the framework of the Indian Constitution — the document the INA itself envisioned in 1943.</div>
+        </div>
+        <div style="background:rgba(200,146,26,0.04);border:1px solid rgba(200,146,26,0.1);padding:24px 20px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:10px;">🕊</div>
+          <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:var(--amber);letter-spacing:2px;margin-bottom:8px;">BELIEF ONLY</div>
+          <div style="font-family:'Noto Sans Devanagari',sans-serif;font-size:12px;color:rgba(200,146,26,0.5);margin-bottom:10px;">केवल विश्वास</div>
+          <div style="font-size:12px;line-height:1.85;color:rgba(200,166,100,0.55);">We honour the INA spirit — Ittefaq, Etmad, Kurbani — as a moral compass. We do not glorify armed conflict. We learn from sacrifice.</div>
+        </div>
+      </div>
+
+      <div style="border:1px solid rgba(200,146,26,0.2);background:rgba(200,146,26,0.05);padding:20px 28px;font-size:11px;letter-spacing:1.5px;color:rgba(200,166,100,0.6);line-height:2.2;text-align:center;">
+        > S.A.T.Y.A. HAS NO POLITICAL AFFILIATION &nbsp;·&nbsp; NO COMMERCIAL INTEREST &nbsp;·&nbsp; NO ARMED WING<br>
+        > WE OPERATE SOLELY ON CONSCIENCE, TRUTH, AND THE BELIEF THAT INDIA DESERVES BETTER<br>
+        > <span style="color:var(--amber);">ITTEFAQ · ETMAD · KURBANI · सत्यमेव जयते</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <div class="tribar"><span></span><span></span><span></span></div>
 
 <!-- ══ FOOTER ══ -->
@@ -2033,6 +2658,8 @@ footer::before{
     <a class="fl-link" href="#ops">Secret Operations</a>
     <a class="fl-link" href="#naval">1946 Naval Mutiny</a>
     <a class="fl-link" href="#women">Women Commanders</a>
+    <a class="fl-link" href="#formations">Formations</a>
+    <a class="fl-link" href="#disclaimer">Disclaimer</a>
     <a class="fl-link" href="#enlist">Enlistment</a>
   </div>
   <div class="foot-note">
