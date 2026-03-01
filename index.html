@@ -1391,8 +1391,9 @@ footer::before{
 /* FORMATION CARDS */
 .formations-wrap{
   max-width:1280px;margin:0 auto;
-  padding:0 48px 100px;
+  padding:0 48px 80px;
   display:flex;flex-direction:column;gap:3px;
+  overflow:hidden;
 }
 
 /* Each formation = full-width dramatic card */
@@ -1402,6 +1403,7 @@ footer::before{
   overflow:hidden;
   transition:border-color 0.4s;
   cursor:none;
+  contain:layout;
 }
 .formation:hover{border-color:rgba(200,146,26,0.35);}
 
@@ -1417,24 +1419,28 @@ footer::before{
 /* Formation number watermark */
 .f-watermark{
   position:absolute;
-  right:-20px;top:50%;transform:translateY(-50%);
+  right:0;top:50%;transform:translateY(-50%);
   font-family:'Orbitron',monospace;
-  font-size:200px;font-weight:900;
+  font-size:clamp(80px,15vw,180px);font-weight:900;
   line-height:1;
   opacity:0.03;
   color:var(--amber);
   pointer-events:none;
-  z-index:1;
+  z-index:0;
   transition:opacity 0.4s;
-  letter-spacing:-10px;
+  letter-spacing:-5px;
+  user-select:none;
+  overflow:hidden;
+  max-width:60%;
+  white-space:nowrap;
 }
-.formation:hover .f-watermark{opacity:0.055;}
+.formation:hover .f-watermark{opacity:0.05;}
 
 .f-inner{
   position:relative;z-index:2;
   display:grid;
-  grid-template-columns:280px 1fr;
-  min-height:320px;
+  grid-template-columns:260px 1fr;
+  min-height:0;
 }
 
 /* LEFT — the classification panel */
@@ -1466,9 +1472,11 @@ footer::before{
 .f-name{
   font-family:'Orbitron',monospace;
   font-weight:900;
-  line-height:1.05;
+  line-height:1.1;
   margin-bottom:8px;
-  letter-spacing:2px;
+  letter-spacing:1px;
+  word-break:break-word;
+  overflow-wrap:break-word;
 }
 .f-name-hi{
   font-family:'Noto Serif Devanagari',serif;
@@ -1507,18 +1515,20 @@ footer::before{
 }
 .f-tagline{
   font-family:'Playfair Display',serif;
-  font-size:clamp(18px,2.5vw,28px);
+  font-size:clamp(15px,2vw,24px);
   font-style:italic;font-weight:700;
   color:var(--paper);
-  margin-bottom:20px;
-  line-height:1.35;
+  margin-bottom:16px;
+  line-height:1.45;
+  overflow-wrap:break-word;
 }
 .f-tagline .acc{color:var(--amber);}
 .f-body{
-  font-size:13px;line-height:2;
+  font-size:13px;line-height:1.9;
   color:rgba(200,166,100,0.6);
   margin-bottom:20px;
-  max-width:680px;
+  max-width:100%;
+  overflow-wrap:break-word;
 }
 .f-body strong{color:rgba(232,213,168,0.85);}
 
@@ -1721,7 +1731,8 @@ footer::before{
   .naval-layout { grid-template-columns: 1fr; }
   .enlist-layout { grid-template-columns: 1fr; }
   footer { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .f-inner { grid-template-columns: 220px 1fr; }
+  .f-inner { grid-template-columns: 200px 1fr; }
+  .f-name { font-size: clamp(18px, 3vw, 32px); letter-spacing: 1px; }
   .f-attributes { grid-template-columns: 1fr 1fr; }
 }
 
@@ -1788,14 +1799,16 @@ footer::before{
   .women-grid { grid-template-columns: 1fr 1fr; }
 
   /* FORMATIONS */
-  .f-inner { grid-template-columns: 1fr; }
-  .f-left { border-right: none; border-bottom: 1px solid rgba(200,146,26,0.1); padding: 28px 24px; }
-  .f-right { padding: 28px 24px; }
-  .f-name { font-size: clamp(22px, 6vw, 36px); }
-  .f-attributes { grid-template-columns: 1fr 1fr; gap: 4px; }
-  .f-watermark { font-size: 120px; right: -10px; }
+  .f-inner { grid-template-columns: 1fr; min-height: 0; }
+  .f-left { border-right: none; border-bottom: 1px solid rgba(200,146,26,0.1); padding: 24px 20px; }
+  .f-right { padding: 24px 20px; }
+  .f-name { font-size: clamp(20px, 6vw, 32px); letter-spacing: 1px; }
+  .f-tagline { font-size: clamp(14px, 4vw, 20px); }
+  .f-body { font-size: 12.5px; line-height: 1.8; }
+  .f-attributes { grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+  .f-watermark { font-size: 100px; opacity: 0.025; }
   .page-hero { padding: 50px 20px 40px; }
-  .formations-wrap { padding: 0 20px 60px; }
+  .formations-wrap { padding: 0 16px 50px; }
 
   /* DECLARATION */
   .enlist-layout { grid-template-columns: 1fr; }
@@ -1868,12 +1881,17 @@ footer::before{
   .wg-card { padding: 22px 18px; }
 
   /* FORMATIONS */
-  .f-left { padding: 22px 18px; }
-  .f-right { padding: 22px 18px; }
-  .f-attributes { grid-template-columns: 1fr; }
-  .f-tagline { font-size: 16px; }
-  .f-body { font-size: 12px; }
-  .f-watermark { opacity: 0.025; font-size: 90px; }
+  .f-left { padding: 20px 16px; }
+  .f-right { padding: 20px 16px; }
+  .f-attributes { grid-template-columns: 1fr 1fr; gap: 4px; }
+  .f-tagline { font-size: 14px; line-height: 1.5; }
+  .f-body { font-size: 12px; line-height: 1.75; }
+  .f-doctrine { font-size: 12px; }
+  .f-watermark { display: none; }
+  .f-emblem { width: 52px; height: 52px; font-size: 24px; }
+  .f-name { font-size: clamp(18px, 7vw, 28px); }
+  .fab-value { font-size: 11px; }
+  .fab-label { font-size: 7px; }
   .f-emblem { width: 56px; height: 56px; font-size: 28px; }
 
   /* PHILOSOPHY */
