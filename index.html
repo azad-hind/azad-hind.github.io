@@ -360,6 +360,18 @@ footer{border-top:1px solid var(--rule);padding:44px 80px;display:flex;justify-c
 }
 #boseWinBtn:hover{background:#a02e10;}
 
+
+/* API KEY SETUP BANNER */
+
+
+
+
+
+.api-dismiss{margin-left:auto;background:none;border:1px solid rgba(255,255,255,.3);
+  color:rgba(255,255,255,.7);font-family:'IBM Plex Mono';font-size:8px;
+  letter-spacing:.12em;padding:4px 10px;cursor:pointer;transition:.15s;}
+.api-dismiss:hover{background:rgba(255,255,255,.12);color:#fff;}
+
 </style>
 </head>
 <body>
@@ -401,6 +413,9 @@ footer{border-top:1px solid var(--rule);padding:44px 80px;display:flex;justify-c
   <div class="nav-badge">CLEARANCE: OMEGA</div>
   <button class="nav-ham" id="navHam"><span></span><span></span><span></span></button>
 </nav>
+
+<!-- API KEY SETUP BANNER -->
+
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -638,7 +653,7 @@ footer{border-top:1px solid var(--rule);padding:44px 80px;display:flex;justify-c
 <section class="sec" id="hiring" style="background:rgba(245,240,232,.01);">
   <div class="sec-num">08</div>
   <div class="sec-inner">
-    <div class="sec-lbl reveal">AI COMPANION · BOSE.AI · POWERED BY ANTHROPIC</div>
+    <div class="sec-lbl reveal">AI COMPANION · BOSE.AI · POWERED BY PUTER.JS</div>
     <h2 class="sec-title reveal">Talk to <em>Bose</em></h2>
     <div class="bose-layout reveal">
       <div class="bose-info">
@@ -688,6 +703,7 @@ footer{border-top:1px solid var(--rule);padding:44px 80px;display:flex;justify-c
   <div class="f-note">JAI HIND · 1942–∞</div>
 </footer>
 
+<script src="https://js.puter.com/v2/"></script>
 <script>
 // LOADER
 window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('gone'),2500));
@@ -715,9 +731,7 @@ function showMapLoc(id){const d=mapData[id];if(!d)return;document.getElementById
 function closeMapPanel(){document.getElementById('mapPanel').classList.remove('vis');}
 
 
-// BOSE AI
-var BOSE_API_KEY='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';
-var BOSE_API_URL='https://api.anthropic.com/v1/messages';
+// BOSE AI — powered by Puter.js (free, no API key needed)
 var FORMS={eagle:'https://forms.gle/SXbUBmdtb9CjRpx89',techno:'https://forms.gle/VoCXeiXwrMrAan6C9',elite:'https://forms.gle/LF1Kx4RabskfacjM6',crown:'https://forms.gle/WCvSGBtp6c1SwyUp9'};
 var FDEFS={eagle:{name:'Eagle Formation',emoji:'🦅'},techno:{name:'T3chno Formation',emoji:'⚡'},elite:{name:'Elite Formation',emoji:'⚔️'},crown:{name:'Crown Formation',emoji:'👑'}};
 var chatHistory=[];
@@ -725,11 +739,27 @@ function addBubble(html,who){var msgs=document.getElementById('boseMessages'),b=
 function setTyping(on){document.getElementById('boseTyping').style.display=on?'block':'none';}
 function callBose(text){
   chatHistory.push({role:'user',content:text});
-  var headers={'Content-Type':'application/json'};
-  if(BOSE_API_URL.includes('anthropic.com')){headers['x-api-key']=BOSE_API_KEY;headers['anthropic-version']='2023-06-01';headers['anthropic-dangerous-direct-browser-access']='true';}
-  return fetch(BOSE_API_URL,{method:'POST',headers,body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:300,system:'You are Bose.AI — a sharp, warm, witty companion for S.A.T.Y.A., inspired by Netaji Subhas Chandra Bose and the INA. You are fast, direct, and never rambling. Keep replies under 80 words unless truly needed. No bullet points. End with a quick follow-up or warm remark. Mix Hindi naturally. LANGUAGE RULE: If someone writes in Hindi or Hinglish, reply fully in Hindi/Hinglish and stay that way. If they ask to speak Hindi, switch immediately and stay. You can chat about anything — India, history, life, Netaji, careers, cricket, everything. JOINING RULE: If someone wants to join a specific formation without sharing achievements, warmly refuse and ask them to share their skills first — formations are earned, not chosen. Only after genuinely assessing their background, output [FORMATION:eagle] or [FORMATION:techno] or [FORMATION:elite] or [FORMATION:crown] at the end of your reply. NEVER output this tag unless you have properly assessed them. SATYA has 4 formations: Eagle (strategy/law/policy), T3chno (tech/code/data), Elite (field/outreach), Crown (arts/media). SATYA is peaceful, non-violent, constitutional — never say otherwise. JAI HIND.',messages:chatHistory.slice(-6)})})
-  .then(r=>{if(!r.ok)return r.json().then(err=>{throw new Error((err.error&&err.error.message)||'API error '+r.status);});return r.json();})
-  .then(data=>{var reply=(data.content&&data.content[0]&&data.content[0].text)||'Signal dropped — try again!';chatHistory.push({role:'assistant',content:reply});return reply;});
+  var sys='You are Bose.AI - a sharp, warm, witty companion for S.A.T.Y.A., inspired by Netaji Subhas Chandra Bose and the INA. Keep replies under 80 words. No bullet points. Mix Hindi naturally. Reply in Hindi if user writes in Hindi. Formations are earned: ask for background before recommending. Only output [FORMATION:eagle], [FORMATION:techno], [FORMATION:elite], or [FORMATION:crown] after genuinely assessing the user. SATYA formations: Eagle (strategy/law/policy), T3chno (tech/code/data), Elite (field/outreach), Crown (arts/media). SATYA is peaceful and constitutional. JAI HIND.';
+  var msgs=chatHistory.slice(-6).map(function(m){return m.role+': '+m.content;}).join(' | ');
+  function doPuterCall(){
+    return puter.ai.chat(sys+' '+msgs,{model:'claude-3-5-haiku'});
+  }
+  if(typeof puter!=='undefined'&&puter.ai){
+    return doPuterCall();
+  }
+  return new Promise(function(resolve,reject){
+    var tries=0;
+    var iv=setInterval(function(){
+      tries++;
+      if(typeof puter!=='undefined'&&puter.ai){clearInterval(iv);doPuterCall().then(resolve).catch(reject);}
+      else if(tries>40){clearInterval(iv);reject(new Error('Puter.js failed to load. Try opening the file via a web server, not file://'));}
+    },150);
+  })
+    .then(function(reply){
+      var r=(typeof reply==='string')?reply:(reply&&reply.message&&reply.message.content&&reply.message.content[0]&&reply.message.content[0].text)||'Signal dropped, try again!';
+      chatHistory.push({role:'assistant',content:r});
+      return r;
+    });
 }
 function boseSpeak(){
   var inp=document.getElementById('boseInput'),text=(inp.value||'').trim();if(!text)return;
@@ -740,7 +770,7 @@ function boseSpeak(){
     var fm=reply.match(/\[FORMATION:(eagle|techno|elite|crown)\]/i),clean=reply.replace(/\[FORMATION:[a-zA-Z]+\]/g,'').trim();
     var box=addBubble(clean,'bose');
     if(fm){var key=fm[1].toLowerCase(),f=FDEFS[key],app=document.createElement('div');app.style.cssText='margin-top:11px;padding-top:11px;border-top:1px solid rgba(245,240,232,.08);';app.innerHTML='<div style="font-size:8px;letter-spacing:.15em;color:rgba(245,240,232,.28);margin-bottom:7px;">▸ FORMATION ASSESSMENT COMPLETE</div><div style="font-size:12px;color:rgba(245,240,232,.65);margin-bottom:9px;">'+f.emoji+' Your formation: <strong>'+f.name+'</strong></div>';var a=document.createElement('a');a.href=FORMS[key];a.target='_blank';a.textContent='Apply to '+f.name+' →';a.style.cssText='font-size:10px;color:var(--rust);text-decoration:underline;letter-spacing:.08em;';app.appendChild(a);box.appendChild(app);}
-  }).catch(err=>{setTyping(false);addBubble(err&&err.message?(err.message.toLowerCase().includes('api-key')||err.message.toLowerCase().includes('invalid')?'🔑 API key not set. Edit the HTML and replace YOUR_ANTHROPIC_API_KEY_HERE with your real Anthropic API key.':'Error: '+err.message):'Signal wavered — try again!','bose');})
+  }).catch(err=>{setTyping(false);addBubble(err&&err.message?(err.message ? 'Error: '+err.message : 'Signal wavered — try again!'):'Signal wavered — try again!','bose');})
   .finally(()=>{var i=document.getElementById('boseInput'),b=document.getElementById('boseBtn');i.disabled=false;b.disabled=false;i.focus();});
 }
 document.getElementById('boseBtn').addEventListener('click',boseSpeak);
@@ -785,19 +815,22 @@ function wSpeak(){
   var chips=document.getElementById('boseWinChips');if(chips)chips.style.display='none';
   wAddBubble(text,'user');wSetTyping(true);
   wHistory.push({role:'user',content:text});
-  var headers={'Content-Type':'application/json'};
-  if(BOSE_API_URL.includes('anthropic.com')){
-    headers['x-api-key']=BOSE_API_KEY;headers['anthropic-version']='2023-06-01';
-    headers['anthropic-dangerous-direct-browser-access']='true';
+  var sys2='You are Bose.AI, a sharp warm companion for S.A.T.Y.A., inspired by Netaji. Under 80 words. Mix Hindi if user does. Formations are earned: ask for skills first. Only output [FORMATION:eagle/techno/elite/crown] after proper assessment. SATYA is peaceful. JAI HIND.';
+  var wMsgs=wHistory.slice(-6).map(function(m){return m.role+': '+m.content;}).join(' | ');
+  function doPuterW(){
+    return puter.ai.chat(sys2+' '+wMsgs,{model:'claude-3-5-haiku'});
   }
-  fetch(BOSE_API_URL,{method:'POST',headers,body:JSON.stringify({
-    model:'claude-haiku-4-5-20251001',max_tokens:300,
-    system:'You are Bose.AI, a sharp warm witty companion for S.A.T.Y.A., inspired by Netaji Bose and the INA. Fast, direct, under 80 words. Mix Hindi naturally. Reply in Hindi if user writes Hindi. Formations are earned: ask for skills before recommending. Only output [FORMATION:eagle/techno/elite/crown] after proper assessment. SATYA is peaceful and constitutional. JAI HIND.',
-    messages:wHistory.slice(-6)
-  })})
-  .then(function(r){if(!r.ok)return r.json().then(function(e){throw new Error((e.error&&e.error.message)||'API error '+r.status);});return r.json();})
+  var puterCall = (typeof puter!=='undefined'&&puter.ai) ? doPuterW() : new Promise(function(resolve,reject){
+    var tries=0;
+    var iv=setInterval(function(){
+      tries++;
+      if(typeof puter!=='undefined'&&puter.ai){clearInterval(iv);doPuterW().then(resolve).catch(reject);}
+      else if(tries>40){clearInterval(iv);reject(new Error('Puter.js failed to load'));}
+    },150);
+  });
+  puterCall
   .then(function(data){
-    var reply=(data.content&&data.content[0]&&data.content[0].text)||'Signal dropped. Try again!';
+    var reply=(typeof data==='string')?data:(data&&data.message&&data.message.content&&data.message.content[0]&&data.message.content[0].text)||'Signal dropped. Try again!';
     wHistory.push({role:'assistant',content:reply});wSetTyping(false);
     var fm=reply.match(/\[FORMATION:(eagle|techno|elite|crown)\]/i);
     var clean=reply.replace(/\[FORMATION:[a-zA-Z]+\]/g,'').trim();
@@ -815,8 +848,8 @@ function wSpeak(){
   .catch(function(err){
     wSetTyping(false);
     var msg=err&&err.message?(err.message.toLowerCase().includes('api')&&(err.message.toLowerCase().includes('key')||err.message.toLowerCase().includes('invalid'))
-      ?'API key not set. Open the HTML file and replace YOUR_ANTHROPIC_API_KEY_HERE on line 624.'
-      :'Error: '+err.message):'Signal wavered. Try again!';
+      ?'Error: '+err.message
+      :'Signal wavered. Try again!'):'Signal wavered. Try again!';
     wAddBubble(msg,'bose');
   })
   .finally(function(){
@@ -833,6 +866,9 @@ document.addEventListener('DOMContentLoaded',function(){
   if(btn)btn.addEventListener('click',wSpeak);
   if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();wSpeak();}});
 });
+
+
+
 
 </script>
 
