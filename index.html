@@ -739,7 +739,7 @@ function addBubble(html,who){var msgs=document.getElementById('boseMessages'),b=
 function setTyping(on){document.getElementById('boseTyping').style.display=on?'block':'none';}
 function callBose(text){
   chatHistory.push({role:'user',content:text});
-  var sys='You are Bose.AI - a witty sharp companion for S.A.T.Y.A. inspired by Netaji Bose. Under 80 words. No bullets. Mix Hindi naturally. Reply in Hindi if user does. Formations are earned - ask background first. Only tag [FORMATION:eagle/techno/elite/crown] after real assessment. Eagle=law/policy, T3chno=tech, Elite=outreach, Crown=arts. SATYA is peaceful. JAI HIND.';
+  var sys='You are Bose.AI - a sharp witty companion for S.A.T.Y.A. inspired by Netaji Bose. Under 60 words. No bullets. Mix Hindi naturally. Reply in Hindi if user does. FORMATION RULE: Ask ONE question max about what the user does or their skills, then immediately assign a formation. Do not delay. Eagle=law/policy/governance, T3chno=tech/code/data, Elite=field/community/outreach, Crown=arts/media/culture. Tag [FORMATION:eagle], [FORMATION:techno], [FORMATION:elite], or [FORMATION:crown] as soon as you have any signal. SATYA is peaceful. JAI HIND.';
   var prompt=sys+' Conversation so far: '+chatHistory.slice(-8).map(function(m){return m.role+': '+m.content;}).join(' | ');
   function run(){
     return puter.ai.chat(prompt)
@@ -762,6 +762,7 @@ function callBose(text){
         return r;
       });
   }
+  console.log('puter defined:',typeof puter,'puter.ai:',typeof puter!=='undefined'&&!!puter.ai);
   if(typeof puter!=='undefined'&&puter.ai){return run();}
   return new Promise(function(res,rej){
     var n=0,iv=setInterval(function(){
@@ -781,7 +782,7 @@ function boseSpeak(){
     var fm=reply.match(/\[FORMATION:(eagle|techno|elite|crown)\]/i),clean=reply.replace(/\[FORMATION:[a-zA-Z]+\]/g,'').trim();
     var box=addBubble(clean,'bose');
     if(fm){var key=fm[1].toLowerCase(),f=FDEFS[key],app=document.createElement('div');app.style.cssText='margin-top:11px;padding-top:11px;border-top:1px solid rgba(245,240,232,.08);';app.innerHTML='<div style="font-size:8px;letter-spacing:.15em;color:rgba(245,240,232,.28);margin-bottom:7px;">▸ FORMATION ASSESSMENT COMPLETE</div><div style="font-size:12px;color:rgba(245,240,232,.65);margin-bottom:9px;">'+f.emoji+' Your formation: <strong>'+f.name+'</strong></div>';var a=document.createElement('a');a.href=FORMS[key];a.target='_blank';a.textContent='Apply to '+f.name+' →';a.style.cssText='font-size:10px;color:var(--rust);text-decoration:underline;letter-spacing:.08em;';app.appendChild(a);box.appendChild(app);}
-  }).catch(err=>{setTyping(false);addBubble('Error: '+(err&&err.message?err.message:'unknown — check console'),'bose');})
+  }).catch(err=>{setTyping(false);console.error('Bose catch:',err);var em=err?( err.message||err.toString()||JSON.stringify(err) ):'null';addBubble('DEBUG: '+em,'bose');})
   .finally(()=>{var i=document.getElementById('boseInput'),b=document.getElementById('boseBtn');i.disabled=false;b.disabled=false;i.focus();});
 }
 document.getElementById('boseBtn').addEventListener('click',boseSpeak);
@@ -826,7 +827,7 @@ function wSpeak(){
   var chips=document.getElementById('boseWinChips');if(chips)chips.style.display='none';
   wAddBubble(text,'user');wSetTyping(true);
   wHistory.push({role:'user',content:text});
-  var wsys='You are Bose.AI, a sharp warm companion for S.A.T.Y.A. inspired by Netaji. Under 80 words. Mix Hindi naturally. Formations earned - ask for skills first. Only tag [FORMATION:eagle/techno/elite/crown] after real assessment. SATYA is peaceful. JAI HIND.';
+  var wsys='You are Bose.AI, a sharp warm companion for S.A.T.Y.A. inspired by Netaji. Under 60 words. Mix Hindi naturally. FORMATION RULE: Ask ONE question max about skills, then assign immediately. Eagle=law/policy, T3chno=tech/code, Elite=field/community, Crown=arts/media. Tag [FORMATION:eagle/techno/elite/crown] as soon as you have any signal. SATYA is peaceful. JAI HIND.';
   var wprompt=wsys+' Conversation: '+wHistory.slice(-8).map(function(m){return m.role+': '+m.content;}).join(' | ');
   function wrun(){return puter.ai.chat(wprompt);}
   var wp=(typeof puter!=='undefined'&&puter.ai)?wrun():new Promise(function(res,rej){
