@@ -739,27 +739,36 @@ function addBubble(html,who){var msgs=document.getElementById('boseMessages'),b=
 function setTyping(on){document.getElementById('boseTyping').style.display=on?'block':'none';}
 function callBose(text){
   chatHistory.push({role:'user',content:text});
-  var sys='You are Bose.AI - a sharp, warm, witty companion for S.A.T.Y.A., inspired by Netaji Subhas Chandra Bose and the INA. Keep replies under 80 words. No bullet points. Mix Hindi naturally. Reply in Hindi if user writes in Hindi. Formations are earned: ask for background before recommending. Only output [FORMATION:eagle], [FORMATION:techno], [FORMATION:elite], or [FORMATION:crown] after genuinely assessing the user. SATYA formations: Eagle (strategy/law/policy), T3chno (tech/code/data), Elite (field/outreach), Crown (arts/media). SATYA is peaceful and constitutional. JAI HIND.';
-  var msgs=chatHistory.slice(-6).map(function(m){return m.role+': '+m.content;}).join(' | ');
-  function doPuterCall(){
-    return puter.ai.chat(sys+' '+msgs,{model:'claude-3-5-haiku'});
+  var sys=[
+    'You are Bose.AI - a sharp warm witty companion for S.A.T.Y.A., inspired by Netaji Subhas Chandra Bose.',
+    'Keep replies under 80 words. No bullet points. Mix Hindi naturally.',
+    'Reply in Hindi/Hinglish if user writes that way.',
+    'Formations are earned - ask for background before recommending.',
+    'Only output [FORMATION:eagle], [FORMATION:techno], [FORMATION:elite], or [FORMATION:crown] after genuinely assessing user.',
+    'SATYA: Eagle=strategy/law/policy, T3chno=tech/code/data, Elite=field/outreach, Crown=arts/media.',
+    'SATYA is peaceful and constitutional. JAI HIND.'
+  ].join(' ');
+  var history=chatHistory.slice(-12);
+  function run(){
+    return puter.ai.chat(history,{model:'claude-3-5-haiku',system_prompt:sys})
+      .then(function(d){
+        var r='';
+        if(typeof d==='string'){r=d;}
+        else if(d&&d.message&&d.message.content){var c=d.message.content;r=(Array.isArray(c)&&c[0]&&c[0].text)?c[0].text:String(c);}
+        else if(d&&d.text){r=d.text;}
+        else{r=JSON.stringify(d);}
+        chatHistory.push({role:'assistant',content:r});
+        return r;
+      });
   }
-  if(typeof puter!=='undefined'&&puter.ai){
-    return doPuterCall();
-  }
-  return new Promise(function(resolve,reject){
-    var tries=0;
-    var iv=setInterval(function(){
-      tries++;
-      if(typeof puter!=='undefined'&&puter.ai){clearInterval(iv);doPuterCall().then(resolve).catch(reject);}
-      else if(tries>40){clearInterval(iv);reject(new Error('Puter.js failed to load. Try opening the file via a web server, not file://'));}
+  if(typeof puter!=='undefined'&&puter.ai){return run();}
+  return new Promise(function(res,rej){
+    var n=0,iv=setInterval(function(){
+      n++;
+      if(typeof puter!=='undefined'&&puter.ai){clearInterval(iv);run().then(res).catch(rej);}
+      else if(n>40){clearInterval(iv);rej(new Error('Puter.js did not load'));}
     },150);
-  })
-    .then(function(reply){
-      var r=(typeof reply==='string')?reply:(reply&&reply.message&&reply.message.content&&reply.message.content[0]&&reply.message.content[0].text)||'Signal dropped, try again!';
-      chatHistory.push({role:'assistant',content:r});
-      return r;
-    });
+  });
 }
 function boseSpeak(){
   var inp=document.getElementById('boseInput'),text=(inp.value||'').trim();if(!text)return;
@@ -770,7 +779,7 @@ function boseSpeak(){
     var fm=reply.match(/\[FORMATION:(eagle|techno|elite|crown)\]/i),clean=reply.replace(/\[FORMATION:[a-zA-Z]+\]/g,'').trim();
     var box=addBubble(clean,'bose');
     if(fm){var key=fm[1].toLowerCase(),f=FDEFS[key],app=document.createElement('div');app.style.cssText='margin-top:11px;padding-top:11px;border-top:1px solid rgba(245,240,232,.08);';app.innerHTML='<div style="font-size:8px;letter-spacing:.15em;color:rgba(245,240,232,.28);margin-bottom:7px;">▸ FORMATION ASSESSMENT COMPLETE</div><div style="font-size:12px;color:rgba(245,240,232,.65);margin-bottom:9px;">'+f.emoji+' Your formation: <strong>'+f.name+'</strong></div>';var a=document.createElement('a');a.href=FORMS[key];a.target='_blank';a.textContent='Apply to '+f.name+' →';a.style.cssText='font-size:10px;color:var(--rust);text-decoration:underline;letter-spacing:.08em;';app.appendChild(a);box.appendChild(app);}
-  }).catch(err=>{setTyping(false);addBubble(err&&err.message?(err.message ? 'Error: '+err.message : 'Signal wavered — try again!'):'Signal wavered — try again!','bose');})
+  }).catch(err=>{setTyping(false);addBubble('Error: '+(err&&err.message?err.message:'unknown — check console'),'bose');})
   .finally(()=>{var i=document.getElementById('boseInput'),b=document.getElementById('boseBtn');i.disabled=false;b.disabled=false;i.focus();});
 }
 document.getElementById('boseBtn').addEventListener('click',boseSpeak);
@@ -815,21 +824,25 @@ function wSpeak(){
   var chips=document.getElementById('boseWinChips');if(chips)chips.style.display='none';
   wAddBubble(text,'user');wSetTyping(true);
   wHistory.push({role:'user',content:text});
-  var sys2='You are Bose.AI, a sharp warm companion for S.A.T.Y.A., inspired by Netaji. Under 80 words. Mix Hindi if user does. Formations are earned: ask for skills first. Only output [FORMATION:eagle/techno/elite/crown] after proper assessment. SATYA is peaceful. JAI HIND.';
-  var wMsgs=wHistory.slice(-6).map(function(m){return m.role+': '+m.content;}).join(' | ');
-  function doPuterW(){
-    return puter.ai.chat(sys2+' '+wMsgs,{model:'claude-3-5-haiku'});
+  var wsys=[
+    'You are Bose.AI, a sharp warm companion for S.A.T.Y.A., inspired by Netaji.',
+    'Under 80 words. Mix Hindi if user does.',
+    'Formations earned - ask for skills first.',
+    'Only output [FORMATION:eagle/techno/elite/crown] after proper assessment.',
+    'SATYA is peaceful. JAI HIND.'
+  ].join(' ');
+  var wh=wHistory.slice(-12);
+  function wrun(){
+    return puter.ai.chat(wh,{model:'claude-3-5-haiku',system_prompt:wsys});
   }
-  var puterCall = (typeof puter!=='undefined'&&puter.ai) ? doPuterW() : new Promise(function(resolve,reject){
-    var tries=0;
-    var iv=setInterval(function(){
-      tries++;
-      if(typeof puter!=='undefined'&&puter.ai){clearInterval(iv);doPuterW().then(resolve).catch(reject);}
-      else if(tries>40){clearInterval(iv);reject(new Error('Puter.js failed to load'));}
+  var wp=(typeof puter!=='undefined'&&puter.ai)?wrun():new Promise(function(res,rej){
+    var n=0,iv=setInterval(function(){
+      n++;
+      if(typeof puter!=='undefined'&&puter.ai){clearInterval(iv);wrun().then(res).catch(rej);}
+      else if(n>40){clearInterval(iv);rej(new Error('Puter.js did not load'));}
     },150);
   });
-  puterCall
-  .then(function(data){
+  wp.then(function(data){
     var reply=(typeof data==='string')?data:(data&&data.message&&data.message.content&&data.message.content[0]&&data.message.content[0].text)||'Signal dropped. Try again!';
     wHistory.push({role:'assistant',content:reply});wSetTyping(false);
     var fm=reply.match(/\[FORMATION:(eagle|techno|elite|crown)\]/i);
@@ -845,13 +858,7 @@ function wSpeak(){
       app.appendChild(a);box.appendChild(app);
     }
   })
-  .catch(function(err){
-    wSetTyping(false);
-    var msg=err&&err.message?(err.message.toLowerCase().includes('api')&&(err.message.toLowerCase().includes('key')||err.message.toLowerCase().includes('invalid'))
-      ?'Error: '+err.message
-      :'Signal wavered. Try again!'):'Signal wavered. Try again!';
-    wAddBubble(msg,'bose');
-  })
+  .catch(function(err){wSetTyping(false);wAddBubble('Error: '+(err&&err.message?err.message:'unknown — check console'),'bose');})
   .finally(function(){
     document.getElementById('boseWinInput').disabled=false;
     document.getElementById('boseWinBtn').disabled=false;
