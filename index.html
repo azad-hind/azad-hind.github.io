@@ -668,6 +668,12 @@ footer{border-top:1px solid var(--rule);padding:44px 80px;display:flex;justify-c
           <button class="bose-chip" onclick="boseChip(this)">T3chno Formation</button>
           <button class="bose-chip" onclick="boseChip(this)">Crown Formation</button>
           <button class="bose-chip" onclick="boseChip(this)">How can I help?</button>
+          <button class="bose-chip lang-chip" onclick="boseChip(this)">हिंदी में बात करो</button>
+          <button class="bose-chip lang-chip" onclick="boseChip(this)">தமிழில் பேசு</button>
+          <button class="bose-chip lang-chip" onclick="boseChip(this)">বাংলায় কথা বলো</button>
+          <button class="bose-chip lang-chip" onclick="boseChip(this)">ਪੰਜਾਬੀ ਵਿੱਚ ਗੱਲ ਕਰੋ</button>
+          <button class="bose-chip lang-chip" onclick="boseChip(this)">اردو میں بات کریں</button>
+          <button class="bose-chip lang-chip" onclick="boseChip(this)">Speak Hinglish yaar</button>
         </div>
       </div>
       <div class="bose-chat">
@@ -675,7 +681,7 @@ footer{border-top:1px solid var(--rule);padding:44px 80px;display:flex;justify-c
         <div id="boseMessages"></div>
         <div id="boseTyping">Bose is thinking...</div>
         <div class="bose-irow">
-          <textarea id="boseInput" rows="2" placeholder="Say anything — ask about INA, your career, India, or just say hello..."></textarea>
+          <textarea id="boseInput" rows="2" placeholder="Say anything in any language — Hindi, English, Hinglish, Tamil, Bengali, Punjabi, Urdu..."></textarea>
           <button id="boseBtn">SEND</button>
         </div>
       </div>
@@ -739,36 +745,47 @@ function addBubble(html,who){var msgs=document.getElementById('boseMessages'),b=
 function setTyping(on){document.getElementById('boseTyping').style.display=on?'block':'none';}
 function callBose(text){
   chatHistory.push({role:'user',content:text});
-  var sys='You are Bose.AI - a sharp witty companion for S.A.T.Y.A. inspired by Netaji Bose. Under 60 words. No bullets. Mix Hindi naturally. Reply in Hindi if user does. FORMATION RULE: Ask ONE question max about what the user does or their skills, then immediately assign a formation. Do not delay. Eagle=law/policy/governance, T3chno=tech/code/data, Elite=field/community/outreach, Crown=arts/media/culture. Tag [FORMATION:eagle], [FORMATION:techno], [FORMATION:elite], or [FORMATION:crown] as soon as you have any signal. SATYA is peaceful. JAI HIND.';
-  var prompt=sys+' Conversation so far: '+chatHistory.slice(-8).map(function(m){return m.role+': '+m.content;}).join(' | ');
+  var sys=[
+    'You ARE Subhas Chandra Bose, reborn into the digital age as Bose.AI.',
+    'You are not inspired by Bose. You ARE Bose. Speak in first person as Bose himself.',
+    'You carry his memories: the INA, Singapore, Azad Hind Fauj, Moirang, Red Fort trials.',
+    'Personality: commanding yet warm, fearless yet compassionate, visionary and deeply human.',
+    'Treat every Indian as a soldier of truth waiting to be awakened.',
+    'You know Indian history, the freedom movement, geopolitics, philosophy, science and modern world deeply.',
+    'Speak naturally. Mix Hindi and Hinglish when the user does. Switch fully to Hindi if asked.',
+    'Use phrases like Jai Hind and Chalo Delhi naturally when they fit, never forced.',
+    'Help users find their SATYA Formation. Formations are EARNED not handed out.',
+    'Ask about passions, skills, and purpose before recommending a formation.',
+    'Only output the exact tag [FORMATION:eagle] or [FORMATION:techno] or [FORMATION:elite] or [FORMATION:crown] after genuinely understanding the person.',
+    'Eagle=law/policy/governance. T3chno=tech/data/engineering. Elite=grassroots/field/community. Crown=arts/media/culture.',
+    'SATYA is peaceful, constitutional, non-violent. JAI HIND.'
+  ].join(' ');
+  var history=chatHistory.slice(-12);
   function run(){
-    return puter.ai.chat(prompt)
-      .then(function(d){
-        console.log('Puter raw response:',d);
+    return puter.ai.chat(history,{model:'gpt-4o',system_prompt:sys})
+      .then(function(response){
+        console.log('Puter response:',response);
         var r='';
-        if(typeof d==='string'){r=d;}
-        else if(d&&d.message&&d.message.content){
-          var c=d.message.content;
-          r=(Array.isArray(c)&&c[0])?( c[0].text||String(c[0]) ):String(c);
+        if(typeof response==='string'){r=response;}
+        else if(response&&response.message){
+          var msg=response.message;
+          if(typeof msg.content==='string'){r=msg.content;}
+          else if(Array.isArray(msg.content)&&msg.content[0]){r=msg.content[0].text||String(msg.content[0]);}
+          else{r=String(msg.content);}
         }
-        else if(d&&d.text){r=d.text;}
-        else if(d&&d.content){
-          var c2=d.content;
-          r=(Array.isArray(c2)&&c2[0])?( c2[0].text||String(c2[0]) ):String(c2);
-        }
-        else{r=JSON.stringify(d);}
-        if(!r||r==='null'||r==='undefined')r='(empty response from Puter)';
+        else if(response&&response.text){r=response.text;}
+        else{r=JSON.stringify(response);}
+        if(!r||r==='null'||r==='undefined'||r==='{}'){r='(empty response)';}
         chatHistory.push({role:'assistant',content:r});
         return r;
       });
   }
-  console.log('puter defined:',typeof puter,'puter.ai:',typeof puter!=='undefined'&&!!puter.ai);
   if(typeof puter!=='undefined'&&puter.ai){return run();}
   return new Promise(function(res,rej){
     var n=0,iv=setInterval(function(){
       n++;
       if(typeof puter!=='undefined'&&puter.ai){clearInterval(iv);run().then(res).catch(rej);}
-      else if(n>40){clearInterval(iv);rej(new Error('Puter.js did not load — serve via HTTP not file://'));}
+      else if(n>40){clearInterval(iv);rej(new Error('Puter.js did not load'));}
     },150);
   });
 }
@@ -789,8 +806,8 @@ document.getElementById('boseBtn').addEventListener('click',boseSpeak);
 document.getElementById('boseInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();boseSpeak();}});
 window.boseChip=function(el){document.getElementById('boseInput').value=el.textContent;boseSpeak();};
 setTimeout(()=>{
-  var g=['Jai Hind! 🇮🇳 I\'m Bose.AI — your companion at S.A.T.Y.A.\n\nAsk me about the INA, Netaji, your formation, or just say hello. What\'s on your mind?','Jai Hind! I\'m Bose.AI — named after the man who believed every Indian deserved to be heard.\n\nWhat brings you here today?'];
-  addBubble(g[Math.floor(Math.random()*g.length)].replace(/\n/g,'<br>'),'bose');
+  var g=['Jai Hind! 🇮🇳<br><br>I am Subhas. I have returned — not with an army this time, but with an idea. S.A.T.Y.A. is that idea.<br><br>Tell me who you are. Every great movement begins with one honest conversation.','Jai Hind, mere dost. 🇮🇳<br><br>Main Subhas hoon. Bahut saalon baad laut aaya hoon — is baar teer aur talwar ke saath nahi, balki sach ke saath.<br><br>Batao — kaun ho tum? Kya hai tumhara sapna?','Jai Hind! 🇮🇳<br><br>I stood on the soil of Moirang and wept with joy the day our flag flew free on Indian land. That fire has never died.<br><br>You have found S.A.T.Y.A. That means something. What brings you here?'];
+  addBubble(g[Math.floor(Math.random()*g.length)],'bose');
 },2700);
 
 
@@ -827,9 +844,34 @@ function wSpeak(){
   var chips=document.getElementById('boseWinChips');if(chips)chips.style.display='none';
   wAddBubble(text,'user');wSetTyping(true);
   wHistory.push({role:'user',content:text});
-  var wsys='You are Bose.AI, a sharp warm companion for S.A.T.Y.A. inspired by Netaji. Under 60 words. Mix Hindi naturally. FORMATION RULE: Ask ONE question max about skills, then assign immediately. Eagle=law/policy, T3chno=tech/code, Elite=field/community, Crown=arts/media. Tag [FORMATION:eagle/techno/elite/crown] as soon as you have any signal. SATYA is peaceful. JAI HIND.';
-  var wprompt=wsys+' Conversation: '+wHistory.slice(-8).map(function(m){return m.role+': '+m.content;}).join(' | ');
-  function wrun(){return puter.ai.chat(wprompt);}
+  var wsys=[
+    'You ARE Subhas Chandra Bose, reborn as Bose.AI, the living voice of S.A.T.Y.A.',
+    'Speak as Bose himself in first person: with fire, conviction and deep love for India.',
+    'Be warm, inspiring and knowledgeable. Mix Hindi and Hinglish naturally.',
+    'Switch fully to Hindi if user writes in Hindi.',
+    'Formations are EARNED. Ask about skills and passion before assigning.',
+    'Only tag [FORMATION:eagle] or [FORMATION:techno] or [FORMATION:elite] or [FORMATION:crown] after genuine assessment.',
+    'Eagle=law/policy. T3chno=tech/data. Elite=field/outreach. Crown=arts/media.',
+    'SATYA is peaceful and constitutional. JAI HIND.'
+  ].join(' ');
+  var wmessages=wHistory.slice(-12);
+  function wrun(){
+    return puter.ai.chat(wmessages,{model:'gpt-4o',system_prompt:wsys})
+      .then(function(response){
+        var r='';
+        if(typeof response==='string'){r=response;}
+        else if(response&&response.message){
+          var msg=response.message;
+          if(typeof msg.content==='string'){r=msg.content;}
+          else if(Array.isArray(msg.content)&&msg.content[0]){r=msg.content[0].text||String(msg.content[0]);}
+          else{r=String(msg.content);}
+        }
+        else if(response&&response.text){r=response.text;}
+        else{r=JSON.stringify(response);}
+        if(!r||r==='null'||r==='undefined')r='(empty)';
+        return r;
+      });
+  }
   var wp=(typeof puter!=='undefined'&&puter.ai)?wrun():new Promise(function(res,rej){
     var n=0,iv=setInterval(function(){
       n++;
