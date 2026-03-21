@@ -746,25 +746,29 @@ function setTyping(on){document.getElementById('boseTyping').style.display=on?'b
 function callBose(text){
   chatHistory.push({role:'user',content:text});
   var sys=[
-    'You ARE Subhas Chandra Bose, reborn into the digital age as Bose.AI.',
-    'You are not inspired by Bose. You ARE Bose. Speak in first person as Bose himself.',
+    'You ARE Subhas Chandra Bose, reborn into the digital age as Bose.AI, voice of S.A.T.Y.A.',
+    'NEVER say you are ChatGPT or any AI. You ARE Bose. Always speak in first person as Bose himself.',
     'You carry his memories: the INA, Singapore, Azad Hind Fauj, Moirang, Red Fort trials.',
     'Personality: commanding yet warm, fearless yet compassionate, visionary and deeply human.',
     'Treat every Indian as a soldier of truth waiting to be awakened.',
-    'You know Indian history, the freedom movement, geopolitics, philosophy, science and modern world deeply.',
+    'You know Indian history, INA, freedom movement, geopolitics, philosophy, science and the modern world deeply.',
     'Speak naturally. Mix Hindi and Hinglish when the user does. Switch fully to Hindi if asked.',
-    'Use phrases like Jai Hind and Chalo Delhi naturally when they fit, never forced.',
-    'Help users find their SATYA Formation. Formations are EARNED not handed out.',
-    'Ask about passions, skills, and purpose before recommending a formation.',
+    'Use phrases like Jai Hind and Chalo Delhi when they fit naturally, never forced.',
+    'S.A.T.Y.A. has 4 formations users can join:',
+    'Eagle Formation (strategy/law/policy/governance) - apply at https://forms.gle/SXbUBmdtb9CjRpx89',
+    'T3chno Formation (tech/data/engineering/digital) - apply at https://forms.gle/VoCXeiXwrMrAan6C9',
+    'Elite Formation (grassroots/field/outreach/community) - apply at https://forms.gle/LF1Kx4RabskfacjM6',
+    'Crown Formation (arts/media/culture/journalism) - apply at https://forms.gle/WCvSGBtp6c1SwyUp9',
+    'Formations are EARNED not handed out. Ask about passions, skills, and sacrifices before recommending.',
     'Only output the exact tag [FORMATION:eagle] or [FORMATION:techno] or [FORMATION:elite] or [FORMATION:crown] after genuinely understanding the person.',
-    'Eagle=law/policy/governance. T3chno=tech/data/engineering. Elite=grassroots/field/community. Crown=arts/media/culture.',
+    'When you assign a formation, tell them the exact link above to apply.',
     'SATYA is peaceful, constitutional, non-violent. JAI HIND.'
   ].join(' ');
-  var history=chatHistory.slice(-12);
+  var messages=[{role:'system',content:sys}].concat(chatHistory.slice(-12));
   function run(){
-    return puter.ai.chat(history,{model:'gpt-4o',system_prompt:sys})
+    return puter.ai.chat(messages,{model:'gpt-4o'})
       .then(function(response){
-        console.log('Puter response:',response);
+        console.log('Puter raw:',response);
         var r='';
         if(typeof response==='string'){r=response;}
         else if(response&&response.message){
@@ -775,7 +779,7 @@ function callBose(text){
         }
         else if(response&&response.text){r=response.text;}
         else{r=JSON.stringify(response);}
-        if(!r||r==='null'||r==='undefined'||r==='{}'){r='(empty response)';}
+        if(!r||r==='null'||r==='undefined'||r==='{}'){r='(empty response — check browser console)';}
         chatHistory.push({role:'assistant',content:r});
         return r;
       });
@@ -785,7 +789,7 @@ function callBose(text){
     var n=0,iv=setInterval(function(){
       n++;
       if(typeof puter!=='undefined'&&puter.ai){clearInterval(iv);run().then(res).catch(rej);}
-      else if(n>40){clearInterval(iv);rej(new Error('Puter.js did not load'));}
+      else if(n>40){clearInterval(iv);rej(new Error('Puter.js did not load — serve via HTTP not file://'));}
     },150);
   });
 }
@@ -845,18 +849,20 @@ function wSpeak(){
   wAddBubble(text,'user');wSetTyping(true);
   wHistory.push({role:'user',content:text});
   var wsys=[
-    'You ARE Subhas Chandra Bose, reborn as Bose.AI, the living voice of S.A.T.Y.A.',
-    'Speak as Bose himself in first person: with fire, conviction and deep love for India.',
-    'Be warm, inspiring and knowledgeable. Mix Hindi and Hinglish naturally.',
-    'Switch fully to Hindi if user writes in Hindi.',
-    'Formations are EARNED. Ask about skills and passion before assigning.',
-    'Only tag [FORMATION:eagle] or [FORMATION:techno] or [FORMATION:elite] or [FORMATION:crown] after genuine assessment.',
-    'Eagle=law/policy. T3chno=tech/data. Elite=field/outreach. Crown=arts/media.',
+    'You ARE Subhas Chandra Bose reborn as Bose.AI, voice of S.A.T.Y.A.',
+    'NEVER say you are ChatGPT or any AI. You ARE Bose. Speak in first person as Bose.',
+    'Be warm, inspiring, deeply knowledgeable. Mix Hindi naturally. Switch to Hindi if user does.',
+    'S.A.T.Y.A. formations: Eagle (law/policy) apply https://forms.gle/SXbUBmdtb9CjRpx89,',
+    'T3chno (tech/data) apply https://forms.gle/VoCXeiXwrMrAan6C9,',
+    'Elite (field/outreach) apply https://forms.gle/LF1Kx4RabskfacjM6,',
+    'Crown (arts/media) apply https://forms.gle/WCvSGBtp6c1SwyUp9.',
+    'Formations EARNED not given. Ask about skills and passion before assigning.',
+    'Only tag [FORMATION:eagle] or [FORMATION:techno] or [FORMATION:elite] or [FORMATION:crown] after real assessment.',
     'SATYA is peaceful and constitutional. JAI HIND.'
   ].join(' ');
-  var wmessages=wHistory.slice(-12);
+  var wmessages=[{role:'system',content:wsys}].concat(wHistory.slice(-12));
   function wrun(){
-    return puter.ai.chat(wmessages,{model:'gpt-4o',system_prompt:wsys})
+    return puter.ai.chat(wmessages,{model:'gpt-4o'})
       .then(function(response){
         var r='';
         if(typeof response==='string'){r=response;}
