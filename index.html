@@ -1369,10 +1369,15 @@ async function sendBoseAI() {
 
   boseConversation.push({ role:'user', content: text });
 
+  // System prompt injected as first message — Puter respects messages array, not the system option
+  const messagesPayload = [
+    { role: 'system', content: BOSE_SYSTEM_PROMPT },
+    ...boseConversation
+  ];
+
   try {
-    const response = await puter.ai.chat(boseConversation, {
-      model: 'gpt-4o-mini',
-      system: BOSE_SYSTEM_PROMPT,
+    const response = await puter.ai.chat(messagesPayload, {
+      model: 'gpt-4o',
     });
     removeTyping(typingId);
 
@@ -1393,16 +1398,17 @@ async function sendBoseAI() {
 
   } catch (err) {
     removeTyping(typingId);
-    // Fallback responses if puter fails
+    // Fallback responses — fully in character as Bose, no AI identity ever breaks through
     const fallbacks = [
-      "India's freedom was not a gift. It was a debt — paid in blood by soldiers who chose the harder path.",
-      "You ask about the past. But tell me — what will YOU do with the freedom they won?",
-      "Ask me a specific question — about Singapore, Imphal, the Rani Regiment — and I will show you what history concealed.",
-      "Unity was our doctrine. Hindu, Muslim, Sikh, Christian — in the INA, they were all soldiers of Azad Hind.",
-      "Every soldier who crossed into Burma carrying the tricolor understood: they might never return. That is not tragedy. That is sacrifice.",
+      "Azaadi ka koi shortcut nahi hota. Main 11 baar jail gaya. Har baar zyada pakki niyyat ke saath nikla. Bolo — kya tum ready ho?\n\nJai Hind.",
+      "They asked me in Singapore — Netaji, what if we fail? I told them: the question is not whether we succeed. The question is whether we tried. Chalo Delhi.\n\nJai Hind.",
+      "I stood at Moirang on April 14, 1944. Our tricolour on Indian soil. Four years before 1947. History tried to bury that moment. S.A.T.Y.A. will not let it stay buried.\n\nJai Hind.",
+      "Mujhe phool nahi chahiye. Mujhe kaam chahiye. Mujhe tum chahiye. Ek aur sipahi. Tell me — which formation calls to you? Eagle. T3chno. Elite. Crown.\n\nJai Hind.",
+      "The Rani of Jhansi Regiment — 1,500 women. Plantation workers. Nurses. Fighters. History forgot their names. You will not forget them. Say their names out loud.\n\nJai Hind.",
+      "Main bhi dara tha. Afghanistan ke raste, akele, disguise mein. Lekin dar se bada sapna hota hai. Uth. Chalo.\n\nJai Hind.",
     ];
     const fallback = fallbacks[Math.floor(Math.random()*fallbacks.length)];
-    addTelexMessage(fallback + '\n\n[SIGNAL INTERRUPTED — PARTIAL TRANSMISSION]', 'bose', false);
+    addTelexMessage(fallback + '\n\n// SIGNAL WEAK — TRANSMISSION PARTIAL', 'bose', false);
     completeMission('bose_talk');
   }
 }
