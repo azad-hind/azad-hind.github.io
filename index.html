@@ -1487,13 +1487,18 @@ let state = { xp:0, rank:0, missions:{} };
 function loadRankFromStorage() {
   const saved = localStorage.getItem('satya_state_v6');
   if (saved) { try { state = JSON.parse(saved); } catch(e){} }
+  // Restore founder verification status
+  if (localStorage.getItem('satya_founder') === '1') founderVerified = true;
   state.missions = state.missions || {};
   if (!state.missions['visit']) completeMission('visit', true);
   updateRankUI();
   document.getElementById('boot-rank-display').textContent = RANKS[state.rank].name;
 }
 
-function saveState() { localStorage.setItem('satya_state_v6', JSON.stringify(state)); }
+function saveState() {
+  localStorage.setItem('satya_state_v6', JSON.stringify(state));
+  if (founderVerified) localStorage.setItem('satya_founder', '1');
+}
 
 function completeMission(id, silent=false) {
   if (state.missions[id]) return false;
@@ -1755,6 +1760,9 @@ document.getElementById('terminal-input').addEventListener('keydown', e => {
       setTimeout(() => showToast('⚡ AURUM-LINK // ALL SEALS BROKEN', 'amber'), 1800);
       setTimeout(() => showToast('JAI HIND — SUPREME COMMAND IS YOURS', 'amber'), 3200);
 
+      // Mark as founder-verified — enables founder-only commands like RESET:0
+      founderVerified = true;
+
       // Unlock everything
       state.xp = 2500; state.rank = RANKS.length - 1;
       MISSIONS.forEach(m => state.missions[m.id] = true);
@@ -1767,6 +1775,21 @@ document.getElementById('terminal-input').addEventListener('keydown', e => {
       clearanceAwaitingCode = false;
       triggerLockdown(raw);
     }
+    return;
+  }
+
+  // ── RESET COMMAND — FOUNDER ONLY ──
+  if (inputClean === 'RESET:0') {
+    if (!founderVerified) {
+      appendTerminal('╔══════════════════════════════════════╗', 'error');
+      appendTerminal('║   ACCESS DENIED — FOUNDER ONLY       ║', 'error');
+      appendTerminal('║   This command requires founder       ║', 'error');
+      appendTerminal('║   identity verification first.        ║', 'error');
+      appendTerminal('╚══════════════════════════════════════╝', 'error');
+      appendTerminal('// Hint: Establish KSH-RYA clearance to prove identity.', 'system');
+      return;
+    }
+    triggerFullReset();
     return;
   }
 
@@ -2137,6 +2160,7 @@ document.addEventListener('click', e => {
 // SECURITY CLEARANCE — KSH-RYA → JAIHIND (TWO-STEP)
 // ═══════════════════════════════════════════════
 let clearanceAwaitingCode = false;  // true after KSH-RYA entered
+let founderVerified = false;         // true only after KSH-RYA → JAIHIND or AADYA override
 
 // Terminal command for KSH-RYA
 COMMANDS['ksh-rya'] = {
@@ -2483,6 +2507,9 @@ function attemptLockdownUnlock() {
     msg.textContent = '> OVERRIDE ACCEPTED — FOUNDER CONFIRMED. RESTORING...';
 
     setTimeout(() => {
+      // Founder confirmed via AADYA — enable founder commands
+      founderVerified = true;
+
       // Clear lockdown state
       localStorage.removeItem('satya_lockdown');
 
@@ -2533,6 +2560,103 @@ document.addEventListener('DOMContentLoaded', () => {
   const inp = document.getElementById('lockdown-unlock-input');
   if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') attemptLockdownUnlock(); });
 });
+
+
+// ═══════════════════════════════════════════════
+// FULL SYSTEM RESET — RESET:0
+// ═══════════════════════════════════════════════
+function triggerFullReset() {
+  // Print dramatic terminal sequence first
+  const resetLines = [
+    { text: '╔══════════════════════════════════════════════════════════╗', type: 'error', delay: 0 },
+    { text: '║   RESET:0 // MASTER WIPE PROTOCOL INITIATED              ║', type: 'error', delay: 150 },
+    { text: '╠══════════════════════════════════════════════════════════╣', type: 'error', delay: 300 },
+    { text: '║   > Erasing operative rank...                            ║', type: 'error', delay: 500 },
+    { text: '║   > Wiping mission log...                                ║', type: 'error', delay: 700 },
+    { text: '║   > Locking BOSE.AI neural link...                       ║', type: 'error', delay: 900 },
+    { text: '║   > Clearing Aurum-Link...                               ║', type: 'error', delay: 1100 },
+    { text: '║   > Revoking all clearances...                           ║', type: 'error', delay: 1300 },
+    { text: '╠══════════════════════════════════════════════════════════╣', type: 'error', delay: 1500 },
+    { text: '║   SYSTEM RESET COMPLETE — RANK: RECRUIT                  ║', type: 'error', delay: 1700 },
+    { text: '║   All progress wiped. Start again, Operative.            ║', type: 'error', delay: 1900 },
+    { text: '╚══════════════════════════════════════════════════════════╝', type: 'error', delay: 2100 },
+  ];
+
+  resetLines.forEach(l => setTimeout(() => appendTerminal(l.text, l.type), l.delay));
+
+  setTimeout(() => {
+    // Wipe all state — including founder verification
+    state = { xp: 0, rank: 0, missions: {} };
+    founderVerified = false;
+    localStorage.removeItem('satya_founder');
+    saveState();
+
+    // Clear lockdown if any
+    localStorage.removeItem('satya_lockdown');
+
+    // Clear Aurum-Link flag
+    aurumLinkEstablished = false;
+    BOSE_SYSTEM_PROMPT_ACTIVE = BOSE_SYSTEM_PROMPT;
+
+    // Remove gold theme
+    document.body.classList.remove('gold-clearance');
+
+    // Re-enable inputs in case they were locked
+    const termInput = document.getElementById('terminal-input');
+    termInput.disabled = false;
+    termInput.placeholder = 'enter command or codeword...';
+
+    const boseInput = document.getElementById('bose-input');
+    if (boseInput) {
+      boseInput.disabled = false;
+      boseInput.placeholder = 'Ask Bose.AI — powered by Puter.js...';
+    }
+    const sendBtn = document.querySelector('.telex-send-btn');
+    if (sendBtn) { sendBtn.disabled = false; sendBtn.style.opacity = '1'; }
+
+    // Hide lockdown screen if showing
+    document.getElementById('security-lockdown').classList.remove('active');
+
+    // Re-init mission (auto-complete visit)
+    completeMission('visit', true);
+
+    // Rebuild UI
+    updateRankUI();
+    renderMissions();
+    renderDossiers();
+    renderRankTable();
+
+    // Reset MCQ state
+    mcqAnswers = {};
+    mcqScore = 0;
+    renderMCQs();
+    const scoreEl = document.getElementById('knowledge-score');
+    if (scoreEl) scoreEl.classList.remove('show');
+
+    // Reset bose conversation
+    boseConversation = [];
+
+    // Toast
+    showToast('RESET:0 // SYSTEM WIPED — RANK: RECRUIT', 'red');
+
+    // Flash the terminal output to show reset happened
+    const out = document.getElementById('terminal-output');
+    out.style.transition = 'opacity 0.3s';
+    out.style.opacity = '0.2';
+    setTimeout(() => {
+      out.innerHTML = '';
+      out.style.opacity = '1';
+      appendTerminal('╔══════════════════════════════════════════════════════════╗', 'system');
+      appendTerminal('║   SATYA_OS v7.0 // SYSTEM WIPED // FRESH BOOT            ║', 'system');
+      appendTerminal('╚══════════════════════════════════════════════════════════╝', 'system');
+      appendTerminal('Operative rank reset to: RECRUIT', 'warning');
+      appendTerminal('All missions cleared. All clearances revoked.', 'system');
+      appendTerminal('BOSE.AI: LOCKED — achieve rank NETAJI to unlock.', 'error');
+      appendTerminal('Type \'help\' to begin again.', 'system');
+    }, 400);
+
+  }, 2300);
+}
 
 // ═══════════════════════════════════════════════
 // PHOTO ARCHIVE LIGHTBOX
