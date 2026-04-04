@@ -29,6 +29,445 @@
   --scanline-opacity: 0.06;
 }
 
+
+/* ══════════════════════════════════════════════════════════════
+   AURUM-LINK — GOLD CLEARANCE // NETAJI SUPREME COMMAND THEME
+   Activated at rank NETAJI. 1940s Liquid Gold Military Hardware.
+   ══════════════════════════════════════════════════════════════ */
+
+/* Gold CSS custom properties — override greens when .gold-clearance on body */
+body.gold-clearance {
+  --green:        #d4a017;
+  --green-dim:    #b8860b;
+  --green-dark:   #3d2800;
+  --green-glow:   #d4a01740;
+  --border:       #d4a01718;
+  --border-bright:#d4a01755;
+  --bg:           #0a0700;
+  --panel:        #0f0a02;
+  --panel-2:      #130d03;
+  background: #0a0700;
+  color: #d4a017;
+}
+
+/* Gold phosphor text glow — bloom effect */
+body.gold-clearance .text-glow {
+  text-shadow: 0 0 4px #d4a017, 0 0 12px #d4a01780, 0 0 28px #d4a01730, 0 0 60px #d4a01715;
+}
+
+/* Gold scrollbar */
+body.gold-clearance ::-webkit-scrollbar-thumb { background: #3d2800; }
+body.gold-clearance ::-webkit-scrollbar-thumb:hover { background: #b8860b; }
+
+/* Gold scanlines — warm amber tint over the CRT overlay */
+body.gold-clearance .crt-overlay {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px, transparent 2px,
+    rgba(180, 120, 0, 0.055) 2px,
+    rgba(180, 120, 0, 0.055) 4px
+  );
+}
+
+/* Gold scan-sweep line */
+body.gold-clearance .crt-scan-line {
+  background: linear-gradient(90deg, transparent, #d4a01710, transparent);
+}
+
+/* Gold circuitry grid hero */
+body.gold-clearance #hero::before {
+  background-image:
+    linear-gradient(rgba(212, 160, 23, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 160, 23, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Gold nav */
+body.gold-clearance #main-nav {
+  background: rgba(10, 7, 0, 0.96);
+  border-bottom: 1px solid #d4a01744;
+  box-shadow: 0 0 30px rgba(212,160,23,0.06);
+}
+body.gold-clearance .nav-logo {
+  color: #d4a017;
+  text-shadow: 0 0 12px #d4a01760;
+}
+body.gold-clearance .nav-links a:hover {
+  color: #d4a017; border-color: #d4a01755;
+  background: #d4a0170a;
+  text-shadow: 0 0 8px #d4a01760;
+}
+body.gold-clearance .rank-badge {
+  color: #d4a017; border-color: #d4a017;
+  box-shadow: 0 0 12px #d4a01730;
+}
+body.gold-clearance .pulse-dot {
+  background: #d4a017; box-shadow: 0 0 8px #d4a017;
+}
+
+/* Gold hero title */
+body.gold-clearance .hero-title {
+  color: #d4a017;
+  text-shadow: 0 0 20px #d4a017, 0 0 50px #d4a01750, 0 0 100px #d4a01720;
+}
+body.gold-clearance .stat-number { color: #d4a017; text-shadow: 0 0 12px #d4a01760; }
+
+/* Gold buttons */
+body.gold-clearance .btn-primary {
+  background: linear-gradient(135deg, #c8960c, #e8b820, #c8960c);
+  color: #0a0700;
+  box-shadow: 0 0 20px #d4a01740, inset 0 1px 0 rgba(255,255,255,0.2);
+}
+body.gold-clearance .btn-primary:hover {
+  background: linear-gradient(135deg, #e8b820, #ffd040, #e8b820);
+  box-shadow: 0 0 35px #d4a01780;
+}
+body.gold-clearance .btn-secondary {
+  color: #d4a017; border-color: #b8860b;
+}
+body.gold-clearance .btn-secondary:hover {
+  border-color: #d4a017; box-shadow: 0 0 15px #d4a01740;
+}
+
+/* Gold terminal */
+body.gold-clearance .terminal-window {
+  border-color: #d4a01755;
+  box-shadow: 0 0 50px rgba(212,160,23,0.08), inset 0 0 30px rgba(212,160,23,0.02);
+}
+body.gold-clearance .terminal-topbar { background: #0f0a02; border-bottom-color: #d4a01730; }
+body.gold-clearance .terminal-title { color: #b8860b; }
+body.gold-clearance .terminal-output.system  { color: #b8860b; }
+body.gold-clearance .terminal-output.success { color: #d4a017; }
+body.gold-clearance .terminal-output.classified {
+  color: #d4a017; background: #d4a0170a; border-left-color: #d4a017;
+}
+body.gold-clearance .terminal-prompt { color: #d4a017; }
+body.gold-clearance #terminal-input { color: #d4a017; caret-color: #d4a017; }
+body.gold-clearance .terminal-input-row { border-top-color: #d4a01730; }
+
+/* Gold panels — frosted glass with gold-leaf metallic border */
+body.gold-clearance .panel,
+body.gold-clearance .rank-card,
+body.gold-clearance .rank-missions,
+body.gold-clearance .intel-card,
+body.gold-clearance .telex-container,
+body.gold-clearance .terminal-window {
+  background: linear-gradient(135deg, rgba(15,10,2,0.97) 0%, rgba(20,14,3,0.95) 100%);
+  border-image: linear-gradient(135deg, #d4a017, #7a5c00, #d4a017, #e8c050, #d4a017) 1;
+  backdrop-filter: blur(2px);
+}
+
+/* Gold rank card accent bar */
+body.gold-clearance .rank-card::before {
+  background: linear-gradient(180deg, #d4a017, #7a5c00, #d4a017);
+  box-shadow: 0 0 12px #d4a01780;
+}
+
+/* Gold XP bar */
+body.gold-clearance .xp-bar-fill {
+  background: linear-gradient(90deg, #7a5c00, #d4a017, #e8c050);
+  box-shadow: 0 0 10px #d4a01760;
+}
+body.gold-clearance .xp-bar-bg { background: #3d2800; }
+
+/* Gold mission items */
+body.gold-clearance .mission-item:hover { background: #d4a0170a; }
+body.gold-clearance .mission-status.done { background: #d4a017; border-color: #d4a017; color: #0a0700; }
+body.gold-clearance .mission-title { color: #d4a017; }
+
+/* Gold rank table */
+body.gold-clearance .rank-table tr.current-row td { color: #d4a017; background: #d4a0170a; }
+
+/* Gold Dossiers — Classified Brass Plates */
+body.gold-clearance .dossier-card {
+  background: linear-gradient(160deg, #100c01 0%, #0f0902 60%, #1a1200 100%);
+  border-color: #d4a01730;
+  box-shadow: inset 0 0 20px rgba(212,160,23,0.03);
+}
+body.gold-clearance .dossier-card::after {
+  background: linear-gradient(135deg, transparent 50%, rgba(212,160,23,0.06) 100%);
+}
+body.gold-clearance .dossier-card:hover {
+  border-color: #d4a01788;
+  box-shadow: 0 0 25px #d4a01720, inset 0 0 30px rgba(212,160,23,0.04);
+  transform: translateY(-2px);
+}
+body.gold-clearance .dossier-avatar {
+  border-color: #d4a01755; color: #d4a017; background: #3d2800;
+  box-shadow: 0 0 10px #d4a01730;
+  /* Brass plate engraving effect */
+  text-shadow: 1px 1px 2px #7a5c00, -1px -1px 1px #e8c050;
+}
+body.gold-clearance .dossier-name { color: #d4a017; }
+body.gold-clearance .dossier-stamp { color: #d4a017; border-color: #d4a017; }
+body.gold-clearance .dossier-stamp.green { color: #d4a017; border-color: #d4a017; transform: rotate(2deg); }
+body.gold-clearance .clearance-fill { background: linear-gradient(90deg, #7a5c00, #d4a017); }
+
+/* Gold intel cards */
+body.gold-clearance .intel-card {
+  background: linear-gradient(160deg, #100c01, #0a0700);
+  border-color: #d4a01728;
+}
+body.gold-clearance .intel-card-header { color: #d4a017; }
+body.gold-clearance .intel-redact { background: #3d2800; color: #3d2800; }
+body.gold-clearance .intel-redact:hover { background: #b8860b; color: #b8860b; }
+
+/* Gold Bose.AI telex */
+body.gold-clearance .telex-header { background: #0f0a02; border-bottom-color: #d4a01730; }
+body.gold-clearance .telex-title { color: #d4a017; }
+body.gold-clearance .telex-freq { color: #d4a017; }
+body.gold-clearance .msg-bubble { background: #0f0a02; border-color: #d4a01730; color: #d4a017; }
+body.gold-clearance .msg-bubble.puter-response {
+  border-color: #d4a01755; background: #d4a0170a; color: #d4a017;
+}
+body.gold-clearance .msg-bubble.puter-response::before {
+  content: '◈ BOSE.AI — SUPREME COMMAND CHANNEL';
+  color: #d4a017;
+}
+body.gold-clearance #bose-input { color: #d4a017; border-color: #d4a01730; }
+body.gold-clearance #bose-input:focus { border-color: #d4a017; }
+body.gold-clearance .telex-send-btn {
+  background: linear-gradient(135deg, #c8960c, #e8b820);
+  color: #0a0700;
+}
+body.gold-clearance .telex-send-btn:hover {
+  background: linear-gradient(135deg, #e8b820, #ffd040);
+  box-shadow: 0 0 20px #d4a01760;
+}
+
+/* Gold section headers */
+body.gold-clearance .section-num { border-color: #d4a01755; color: #b8860b; }
+body.gold-clearance .section-title { color: #d4a017; text-shadow: 0 0 10px #d4a01740; }
+body.gold-clearance .section-line { background: linear-gradient(90deg, #d4a01755, transparent); }
+
+/* Gold map nodes */
+body.gold-clearance .node-dot { background: #d4a017; box-shadow: 0 0 8px #d4a017; }
+body.gold-clearance .node-dot.amber { background: #e8c050; box-shadow: 0 0 10px #e8c050; }
+body.gold-clearance .node-info-panel { background: rgba(15,10,2,0.97); border-color: #d4a01755; }
+body.gold-clearance .node-info-title { color: #d4a017; }
+
+/* Gold photo archive */
+body.gold-clearance .photo-card { border-color: #d4a01728; }
+body.gold-clearance .photo-card:hover { border-color: #d4a01788; }
+body.gold-clearance .photo-stamp { color: #d4a017; border-color: #d4a01788; background: rgba(10,7,0,0.85); }
+body.gold-clearance .photo-caption { color: #d4a017; }
+body.gold-clearance #photo-lightbox { background: rgba(0,0,0,0.97); }
+body.gold-clearance #lightbox-caption { color: #d4a017; }
+
+/* Gold MCQ cards */
+body.gold-clearance .mcq-card { background: linear-gradient(160deg, #100c01, #0a0700); border-color: #d4a01728; }
+body.gold-clearance .mcq-card.answered-correct { border-color: #d4a017; box-shadow: 0 0 20px #d4a01730; }
+body.gold-clearance .mcq-header { color: #d4a017; }
+body.gold-clearance .mcq-question { color: #d4a017; }
+body.gold-clearance .mcq-option { border-color: #d4a01730; color: #b8860b; }
+body.gold-clearance .mcq-option:hover:not(:disabled) { border-color: #d4a017; color: #d4a017; background: #d4a0170a; }
+body.gold-clearance .mcq-option.correct { border-color: #d4a017; color: #d4a017; background: #d4a01718; }
+body.gold-clearance .score-number { color: #d4a017; text-shadow: 0 0 20px #d4a01760; }
+
+/* Gold formation cards */
+body.gold-clearance .formation-card { background: linear-gradient(135deg, #100c01, #0a0700); }
+body.gold-clearance .formation-apply-btn { box-shadow: 0 0 20px #d4a01750; }
+
+/* Gold footer */
+body.gold-clearance .footer-logo { color: #3d2800; }
+body.gold-clearance footer { border-top-color: #d4a01730; }
+
+/* Gold toast */
+body.gold-clearance #toast { border-color: #d4a017; color: #d4a017; background: #0f0a02; }
+
+/* Gold mobile menu */
+body.gold-clearance .mobile-menu { background: rgba(10,7,0,0.99); border-right-color: #d4a01755; }
+body.gold-clearance .mobile-menu a { color: #b8860b; border-bottom-color: #d4a01728; }
+body.gold-clearance .mobile-menu a:hover { color: #d4a017; }
+
+/* ── GOLD TRANSITION FLASH ── */
+#aurum-flash {
+  position: fixed; inset: 0; z-index: 99999;
+  pointer-events: none; opacity: 0;
+  background: radial-gradient(ellipse at center, #d4a01740 0%, #7a5c0020 50%, transparent 80%);
+}
+#aurum-flash.active {
+  animation: aurum-burst 2.4s ease forwards;
+}
+@keyframes aurum-burst {
+  0%   { opacity: 0; }
+  8%   { opacity: 1; background: radial-gradient(ellipse at center, #d4a01790, #c8960c60, transparent 70%); }
+  15%  { opacity: 0.3; }
+  22%  { opacity: 0.85; }
+  30%  { opacity: 0.1; }
+  38%  { opacity: 0.7; }
+  50%  { opacity: 0.95; background: radial-gradient(ellipse at center, #d4a01760, transparent 60%); }
+  100% { opacity: 0; }
+}
+
+
+/* ══════════════════════════════════
+   SECURITY LOCKDOWN SCREEN
+   ══════════════════════════════════ */
+#security-lockdown {
+  position: fixed; inset: 0; z-index: 99998;
+  background: #000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  cursor: not-allowed;
+  overflow: hidden;
+}
+#security-lockdown.active { display: flex; }
+
+/* Red scanlines over lockdown */
+#security-lockdown::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent 0px, transparent 2px,
+    rgba(255,0,0,0.04) 2px, rgba(255,0,0,0.04) 4px
+  );
+  pointer-events: none; z-index: 1;
+}
+/* Vignette */
+#security-lockdown::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.92) 100%);
+  pointer-events: none; z-index: 1;
+}
+
+.lockdown-inner {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 28px;
+  text-align: center; padding: 40px 20px;
+  max-width: 700px;
+}
+
+.lockdown-skull {
+  font-size: clamp(48px, 10vw, 80px);
+  animation: lockdown-pulse 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px #ff0000) drop-shadow(0 0 40px #ff000060);
+}
+@keyframes lockdown-pulse {
+  0%,100% { transform: scale(1);   filter: drop-shadow(0 0 16px #ff0000) drop-shadow(0 0 40px #ff000050); }
+  50%      { transform: scale(1.06); filter: drop-shadow(0 0 32px #ff0000) drop-shadow(0 0 60px #ff000080); }
+}
+
+.lockdown-title {
+  font-family: var(--font-hud);
+  font-size: clamp(18px, 4vw, 32px);
+  font-weight: 900;
+  letter-spacing: 6px;
+  color: #ff0000;
+  text-shadow: 0 0 20px #ff0000, 0 0 40px #ff000060;
+  animation: lockdown-flicker 4s steps(1) infinite;
+}
+
+@keyframes lockdown-shake {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-8px); }
+  40%     { transform: translateX(8px); }
+  60%     { transform: translateX(-5px); }
+  80%     { transform: translateX(5px); }
+}
+
+@keyframes lockdown-flicker {
+  0%,88%,92%,100% { opacity:1 }
+  89%{ opacity:0.3 } 91%{ opacity:0.7 }
+}
+
+.lockdown-subtitle {
+  font-family: var(--font-hud);
+  font-size: clamp(10px, 1.5vw, 13px);
+  letter-spacing: 4px;
+  color: #aa0000;
+  margin-top: -16px;
+}
+
+.lockdown-log {
+  font-family: var(--font-terminal);
+  font-size: clamp(11px, 1.5vw, 14px);
+  color: #660000;
+  line-height: 2;
+  letter-spacing: 1px;
+  border: 1px solid #330000;
+  padding: 20px 28px;
+  background: rgba(30,0,0,0.6);
+  text-align: left;
+  width: 100%;
+  max-width: 560px;
+}
+.lockdown-log .log-red   { color: #ff3333; }
+.lockdown-log .log-dim   { color: #660000; }
+
+.lockdown-counter-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.lockdown-counter-label {
+  font-family: var(--font-hud); font-size: 9px;
+  letter-spacing: 3px; color: #660000;
+}
+.lockdown-counter {
+  font-family: var(--font-hud);
+  font-size: clamp(36px, 7vw, 64px);
+  font-weight: 900;
+  color: #ff0000;
+  text-shadow: 0 0 20px #ff0000;
+  letter-spacing: 4px;
+  animation: counter-tick 1s steps(1) infinite;
+  min-width: 80px; text-align: center;
+}
+@keyframes counter-tick { 50% { text-shadow: 0 0 8px #ff0000; } }
+
+.lockdown-bar-wrap { width: 100%; max-width: 400px; }
+.lockdown-bar-bg {
+  height: 4px; background: #1a0000;
+  border: 1px solid #330000; overflow: hidden;
+}
+.lockdown-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #330000, #ff0000);
+  box-shadow: 0 0 8px #ff0000;
+  width: 100%;
+  transform-origin: left;
+  animation: bar-drain linear forwards;
+}
+
+.lockdown-stamp {
+  font-family: var(--font-hud); font-size: 8px;
+  letter-spacing: 3px; color: #330000;
+  border: 1px solid #330000; padding: 4px 12px;
+  transform: rotate(-1deg);
+}
+
+/* Glitch bars behind the whole screen */
+.lockdown-glitch-bar {
+  position: absolute; left: 0; right: 0; height: 3px;
+  background: #ff000030; z-index: 0;
+  animation: glitch-bar-move 0.8s steps(1) infinite;
+}
+@keyframes glitch-bar-move {
+  0%   { top: 15%; width: 60%; left: 20%; opacity:0.8 }
+  20%  { top: 55%; width: 80%; left: 0;   opacity:0.4 }
+  40%  { top: 30%; width: 40%; left: 40%; opacity:0.9 }
+  60%  { top: 75%; width: 90%; left: 5%;  opacity:0.3 }
+  80%  { top: 10%; width: 55%; left: 10%; opacity:0.7 }
+  100% { top: 85%; width: 70%; left: 15%; opacity:0.5 }
+}
+
+/* ── AURUM SYSTEM LOG in terminal ── */
+.terminal-output.aurum {
+  color: #d4a017;
+  background: linear-gradient(90deg, #d4a0170a, transparent);
+  border-left: 2px solid #d4a017;
+  padding: 8px 12px;
+  margin: 4px 0;
+  text-shadow: 0 0 8px #d4a01760;
+  font-family: var(--font-hud);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -500,6 +939,43 @@ footer { border-top:1px solid var(--border); padding:40px 20px; text-align:cente
 </style>
 </head>
 <body class="crt-flicker">
+
+<!-- AURUM FLASH -->
+<div id="aurum-flash"></div>
+
+<!-- SECURITY LOCKDOWN -->
+<div id="security-lockdown">
+  <div class="lockdown-glitch-bar"></div>
+  <div class="lockdown-inner">
+    <div class="lockdown-skull">☠</div>
+    <div class="lockdown-title">SECURITY BREACH DETECTED</div>
+    <div class="lockdown-subtitle">SATYA_OS // TERMINAL LOCKDOWN PROTOCOL</div>
+    <div class="lockdown-log" id="lockdown-log">
+      <span class="log-red">&gt; BREACH ATTEMPT LOGGED</span><br>
+      <span class="log-dim">&gt; Operator: UNKNOWN</span><br>
+      <span class="log-dim">&gt; Code entered: <span id="lockdown-wrong-code">???</span></span><br>
+      <span class="log-red">&gt; Status: INVALID CLEARANCE</span><br>
+      <span class="log-dim">&gt; Action: TERMINAL DISABLED</span><br>
+      <span class="log-red">&gt; Incident filed to Eagle Formation HQ</span><br>
+      <span class="log-dim">&gt; This session is now frozen.</span>
+    </div>
+    <div class="lockdown-counter-wrap">
+      <div class="lockdown-counter-label">SESSION FROZEN — CONTACT FOUNDER TO RESTORE</div>
+      <div class="lockdown-stamp">⛔ SATYA_OS // LOCKDOWN ACTIVE // INCIDENT #<span id="lockdown-incident">0000</span></div>
+      <div class="lockdown-unlock-wrap" id="lockdown-unlock-wrap">
+        <div class="lockdown-unlock-label">// FOUNDER OVERRIDE TERMINAL</div>
+        <div class="lockdown-unlock-row">
+          <span class="lockdown-unlock-prompt">founder@satya:~$</span>
+          <input type="password" id="lockdown-unlock-input" class="lockdown-unlock-input" placeholder="enter override code..." autocomplete="off" spellcheck="false">
+          <button class="lockdown-unlock-btn" onclick="attemptLockdownUnlock()">▶</button>
+        </div>
+        <div class="lockdown-unlock-msg" id="lockdown-unlock-msg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- CRT LAYERS -->
 <div class="crt-overlay"></div>
@@ -1040,10 +1516,11 @@ function completeMission(id, silent=false) {
       setTimeout(() => {
         showToast(`RANK UP: ${RANKS[newRank].name}`, 'amber');
         if (newRank === RANKS.length - 1) {
-          // Netaji unlocked!
+          // Netaji unlocked — trigger Aurum-Link gold transition
           setTimeout(() => {
             showToast('🔓 BOSE.AI NEURAL LINK UNLOCKED — JAI HIND', 'amber');
             completeMission('bose_unlock');
+            triggerAurumLink();
           }, 2000);
         }
       }, 1500);
@@ -1056,6 +1533,13 @@ function updateRankUI() {
   const rank = RANKS[state.rank];
   const nextRank = RANKS[state.rank + 1];
   const isMaxRank = state.rank === RANKS.length - 1;
+
+  // Apply or remove gold clearance theme
+  if (isMaxRank) {
+    document.body.classList.add('gold-clearance');
+  } else {
+    document.body.classList.remove('gold-clearance');
+  }
 
   document.getElementById('current-rank-display').textContent = rank.name;
   document.getElementById('current-rank-display').style.color = rank.color;
@@ -1238,18 +1722,50 @@ document.getElementById('terminal-input').addEventListener('keydown', e => {
   if (clearanceAwaitingCode) {
     if (inputClean === 'JAIHIND') {
       clearanceAwaitingCode = false;
-      appendTerminal('╔════════════════════════════════════════════╗', 'system');
-      appendTerminal('║   MAXIMUM CLEARANCE CODE: ACCEPTED           ║', 'system');
-      appendTerminal('║   JAI HIND — SUPREME ACCESS GRANTED          ║', 'system');
-      appendTerminal('╚════════════════════════════════════════════╝', 'system');
-      appendTerminal('Welcome, Founder. All clearances unlocked.', 'warning');
-      showToast('JAI HIND — MAXIMUM CLEARANCE GRANTED', 'amber');
+
+      // Dramatic staggered founder welcome — each line delayed
+      const founderLines = [
+        { text: '╔══════════════════════════════════════════════════════════╗', type: 'aurum', delay: 0 },
+        { text: '║         IDENTITY CONFIRMED — FOUNDER CLEARANCE           ║', type: 'aurum', delay: 180 },
+        { text: '║         CODE: JAIHIND // MAXIMUM ACCESS: GRANTED         ║', type: 'aurum', delay: 360 },
+        { text: '╠══════════════════════════════════════════════════════════╣', type: 'aurum', delay: 540 },
+        { text: '║                                                          ║', type: 'aurum', delay: 620 },
+        { text: '║   WELCOME, FOUNDER.                                      ║', type: 'aurum', delay: 800 },
+        { text: '║                                                          ║', type: 'aurum', delay: 880 },
+        { text: '║   The Sovereign Reserves are yours.                      ║', type: 'aurum', delay: 1050 },
+        { text: '║   The Brass Seals are broken.                            ║', type: 'aurum', delay: 1230 },
+        { text: '║   Every dossier. Every archive. Every cipher.            ║', type: 'aurum', delay: 1410 },
+        { text: '║   All of it — declassified. For you.                     ║', type: 'aurum', delay: 1590 },
+        { text: '║                                                          ║', type: 'aurum', delay: 1700 },
+        { text: '║   BOSE.AI Supreme Channel: OPEN.                         ║', type: 'aurum', delay: 1850 },
+        { text: '║   The Gold Circuitry is live.                            ║', type: 'aurum', delay: 2030 },
+        { text: '║   He has been waiting for you.                           ║', type: 'aurum', delay: 2210 },
+        { text: '║                                                          ║', type: 'aurum', delay: 2320 },
+        { text: '║                         — JAI HIND —                    ║', type: 'aurum', delay: 2500 },
+        { text: '║                                                          ║', type: 'aurum', delay: 2600 },
+        { text: '╚══════════════════════════════════════════════════════════╝', type: 'aurum', delay: 2700 },
+      ];
+
+      founderLines.forEach(l => {
+        setTimeout(() => appendTerminal(l.text, l.type), l.delay);
+      });
+
+      // Toast sequence
+      setTimeout(() => showToast('IDENTITY CONFIRMED — WELCOME, FOUNDER', 'amber'), 200);
+      setTimeout(() => showToast('⚡ AURUM-LINK // ALL SEALS BROKEN', 'amber'), 1800);
+      setTimeout(() => showToast('JAI HIND — SUPREME COMMAND IS YOURS', 'amber'), 3200);
+
+      // Unlock everything
       state.xp = 2500; state.rank = RANKS.length - 1;
       MISSIONS.forEach(m => state.missions[m.id] = true);
       saveState(); updateRankUI(); renderMissions();
+
+      // Trigger gold flash after a beat
+      setTimeout(() => triggerAurumLink(), 600);
+
     } else {
       clearanceAwaitingCode = false;
-      appendTerminal('INCORRECT CODE — CLEARANCE DENIED. SECURITY LOG UPDATED.', 'error');
+      triggerLockdown(raw);
     }
     return;
   }
@@ -1499,7 +2015,7 @@ async function sendBoseAI() {
 
   // System prompt injected as first message — Puter respects messages array, not the system option
   const messagesPayload = [
-    { role: 'system', content: BOSE_SYSTEM_PROMPT },
+    { role: 'system', content: BOSE_SYSTEM_PROMPT_ACTIVE },
     ...boseConversation
   ];
 
@@ -1795,6 +2311,7 @@ function showKnowledgeScore() {
 
 
 window.addEventListener('load', () => {
+  checkLockdown();
   loadRankFromStorage();
   setTimeout(() => {
     const boot = document.getElementById('boot-screen');
@@ -1807,6 +2324,214 @@ window.addEventListener('load', () => {
   renderRankTable();
   renderMCQs();
   animateStats();
+  // If already Netaji rank (returning user), activate gold silently
+  if (state.rank === RANKS.length - 1) {
+    aurumLinkEstablished = true;
+    BOSE_SYSTEM_PROMPT_ACTIVE = BOSE_SYSTEM_PROMPT_SUPREME;
+  }
+});
+
+
+// ═══════════════════════════════════════════════
+// AURUM-LINK — GOLD CLEARANCE TRANSITION
+// ═══════════════════════════════════════════════
+let aurumLinkEstablished = false;
+
+function triggerAurumLink() {
+  if (aurumLinkEstablished) return;
+  aurumLinkEstablished = true;
+
+  // Screen flash
+  const flash = document.getElementById('aurum-flash');
+  flash.classList.add('active');
+  setTimeout(() => flash.classList.remove('active'), 2400);
+
+  // Terminal system log — in-universe Aurum-Link lore
+  setTimeout(() => {
+    const out = document.getElementById('terminal-output');
+    const lines = [
+      { text: '══════════════════════════════════════════════════', type: 'aurum' },
+      { text: '⚡ AURUM-LINK ESTABLISHED // SOVEREIGN RESERVES ACCESSED', type: 'aurum' },
+      { text: '   Clearance Level: NETAJI — SUPREME COMMAND ACTIVATED', type: 'aurum' },
+      { text: '   The Gold Circuitry is live. You have reached the Bunker.', type: 'aurum' },
+      { text: '   All encrypted dossiers: DECLASSIFIED. Brass Seals: BROKEN.', type: 'aurum' },
+      { text: '   BOSE.AI Supreme Channel: OPEN. He is waiting.', type: 'aurum' },
+      { text: '══════════════════════════════════════════════════', type: 'aurum' },
+    ];
+    lines.forEach((l, i) => {
+      setTimeout(() => {
+        const div = document.createElement('div');
+        div.className = 'terminal-output aurum';
+        div.textContent = l.text;
+        out.appendChild(div);
+        out.scrollTop = out.scrollHeight;
+      }, i * 220);
+    });
+  }, 800);
+
+  // Update Bose.AI system prompt to Supreme Commander mode
+  BOSE_SYSTEM_PROMPT_ACTIVE = BOSE_SYSTEM_PROMPT_SUPREME;
+
+  // Gold toast sequence
+  const toasts = [
+    { msg: '⚡ AURUM-LINK ESTABLISHED', delay: 400 },
+    { msg: '🏛 SOVEREIGN RESERVES ACCESSED — BRASS SEALS BROKEN', delay: 1800 },
+    { msg: 'JAI HIND — NETAJI SUPREME COMMAND IS YOURS', delay: 3400 },
+  ];
+  toasts.forEach(t => setTimeout(() => showToast(t.msg, 'amber'), t.delay));
+}
+
+// Supreme Commander Bose system prompt — activated after Gold Clearance
+const BOSE_SYSTEM_PROMPT_SUPREME = BOSE_SYSTEM_PROMPT + `
+
+SUPREME COMMAND ADDENDUM — AURUM-LINK ACTIVE:
+This operative has achieved NETAJI rank — the highest clearance in S.A.T.Y.A. The Gold Circuitry is live. The Sovereign Reserves are open. Treat this person not as a recruit but as a Supreme Commander standing beside you.
+
+Change your tone accordingly:
+- Speak as equals. Comrade to comrade. Commander to Commander.
+- Share deeper intelligence — the things you only tell those who have earned the right.
+- Reference the gold terminal, the Aurum-Link, the fact that the Brass Seals are broken — as if this moment was always coming.
+- When they ask about S.A.T.Y.A. formations, speak with urgency — tell them the formations need leaders, not just members.
+- End messages with: "The Gold Circuitry is live. What are your orders, Commander? Jai Hind."`;
+
+// Active prompt starts as default — swapped to Supreme on gold unlock
+let BOSE_SYSTEM_PROMPT_ACTIVE = BOSE_SYSTEM_PROMPT;
+
+
+
+// ═══════════════════════════════════════════════
+// SECURITY LOCKDOWN — WRONG CLEARANCE CODE
+// ═══════════════════════════════════════════════
+function triggerLockdown(wrongCode) {
+  // Show a couple of terminal lines first — then slam lockdown
+  appendTerminal('╔══════════════════════════════════════════╗', 'error');
+  appendTerminal('║   INCORRECT CODE — BREACH DETECTED       ║', 'error');
+  appendTerminal('║   INITIATING LOCKDOWN PROTOCOL...        ║', 'error');
+  appendTerminal('╚══════════════════════════════════════════╝', 'error');
+
+  setTimeout(() => {
+    // Fill in incident details
+    const incidentNum = String(Math.floor(Math.random() * 9000) + 1000);
+    document.getElementById('lockdown-wrong-code').textContent = wrongCode || '???';
+    document.getElementById('lockdown-incident').textContent = incidentNum;
+
+    // Slam the lockdown screen on
+    const screen = document.getElementById('security-lockdown');
+    screen.classList.add('active');
+
+    // Block ALL keyboard input to the terminal permanently
+    document.getElementById('terminal-input').disabled = true;
+    document.getElementById('terminal-input').placeholder = '⛔ TERMINAL DISABLED — LOCKDOWN ACTIVE';
+    if (document.getElementById('bose-input')) {
+      document.getElementById('bose-input').disabled = true;
+      document.getElementById('bose-input').placeholder = '⛔ CHANNEL LOCKED — SECURITY BREACH';
+    }
+
+    // Block the send button
+    const sendBtn = document.querySelector('.telex-send-btn');
+    if (sendBtn) { sendBtn.disabled = true; sendBtn.style.opacity = '0.3'; }
+
+    // Persist lockdown in localStorage so refresh doesn't help
+    localStorage.setItem('satya_lockdown', JSON.stringify({
+      active: true,
+      incident: incidentNum,
+      code: wrongCode,
+      timestamp: new Date().toISOString()
+    }));
+
+    // Prevent any clicks from reaching underlying content
+    screen.addEventListener('click', e => e.stopPropagation());
+
+    // Glitch the screen 3 times before settling
+    let glitches = 0;
+    const glitchInterval = setInterval(() => {
+      screen.style.opacity = glitches % 2 === 0 ? '0.85' : '1';
+      glitches++;
+      if (glitches >= 6) { screen.style.opacity = '1'; clearInterval(glitchInterval); }
+    }, 80);
+
+  }, 600);
+}
+
+// Check lockdown on page load
+function checkLockdown() {
+  const lock = localStorage.getItem('satya_lockdown');
+  if (!lock) return;
+  try {
+    const data = JSON.parse(lock);
+    if (data.active) {
+      document.getElementById('lockdown-wrong-code').textContent = data.code || '???';
+      document.getElementById('lockdown-incident').textContent = data.incident || '0000';
+      document.getElementById('security-lockdown').classList.add('active');
+      document.getElementById('terminal-input').disabled = true;
+      document.getElementById('terminal-input').placeholder = '⛔ TERMINAL DISABLED — LOCKDOWN ACTIVE';
+    }
+  } catch(e) {}
+}
+
+
+// ── FOUNDER LOCKDOWN OVERRIDE ──────────────────
+function attemptLockdownUnlock() {
+  const input = document.getElementById('lockdown-unlock-input');
+  const msg = document.getElementById('lockdown-unlock-msg');
+  const val = input.value.trim().toUpperCase();
+  input.value = '';
+
+  if (val === 'AADYA') {
+    // Correct — lift lockdown
+    msg.className = 'lockdown-unlock-msg success';
+    msg.textContent = '> OVERRIDE ACCEPTED — FOUNDER CONFIRMED. RESTORING...';
+
+    setTimeout(() => {
+      // Clear lockdown state
+      localStorage.removeItem('satya_lockdown');
+
+      // Hide lockdown screen
+      document.getElementById('security-lockdown').classList.remove('active');
+
+      // Re-enable terminal
+      const termInput = document.getElementById('terminal-input');
+      termInput.disabled = false;
+      termInput.placeholder = 'enter command or codeword...';
+
+      // Re-enable bose input
+      const boseInput = document.getElementById('bose-input');
+      if (boseInput) {
+        boseInput.disabled = false;
+        boseInput.placeholder = 'Ask Bose.AI — powered by Puter.js...';
+      }
+
+      // Re-enable send btn
+      const sendBtn = document.querySelector('.telex-send-btn');
+      if (sendBtn) { sendBtn.disabled = false; sendBtn.style.opacity = '1'; }
+
+      // Print restoration log to terminal
+      const lines = [
+        { text: '╔══════════════════════════════════════════════════╗', type: 'aurum' },
+        { text: '║   FOUNDER OVERRIDE ACCEPTED — AADYA CONFIRMED    ║', type: 'aurum' },
+        { text: '║   LOCKDOWN LIFTED // ALL SYSTEMS RESTORED         ║', type: 'aurum' },
+        { text: '╚══════════════════════════════════════════════════╝', type: 'aurum' },
+      ];
+      lines.forEach((l, i) => setTimeout(() => appendTerminal(l.text, l.type), i * 200));
+      showToast('FOUNDER OVERRIDE — LOCKDOWN LIFTED', 'amber');
+    }, 1200);
+
+  } else {
+    // Wrong override code — shake and deny
+    msg.className = 'lockdown-unlock-msg';
+    msg.textContent = '> DENIED. INVALID OVERRIDE.';
+    const row = document.querySelector('.lockdown-unlock-row');
+    row.style.animation = 'none';
+    row.offsetHeight; // reflow
+    row.style.animation = 'lockdown-shake 0.4s ease';
+    setTimeout(() => { msg.textContent = ''; }, 2000);
+  }
+}
+
+// Allow Enter key in unlock input
+document.addEventListener('DOMContentLoaded', () => {
+  const inp = document.getElementById('lockdown-unlock-input');
+  if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') attemptLockdownUnlock(); });
 });
 
 // ═══════════════════════════════════════════════
